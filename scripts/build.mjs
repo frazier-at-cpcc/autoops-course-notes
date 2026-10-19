@@ -67,6 +67,21 @@ function makeMarked() {
   });
   return m;
 }
+// highlight.js ships no HCL (Terraform) grammar; this small one covers what the notes show.
+hljs.registerLanguage('hcl', () => ({
+  name: 'HCL', aliases: ['terraform', 'tf'],
+  keywords: {
+    keyword: 'resource data variable output module provider terraform locals moved import check backend required_providers lifecycle dynamic for_each count depends_on for in if',
+    literal: 'true false null',
+  },
+  contains: [
+    hljs.HASH_COMMENT_MODE, hljs.C_LINE_COMMENT_MODE, hljs.C_BLOCK_COMMENT_MODE,
+    { className: 'string', begin: '"', end: '"', contains: [{ className: 'subst', begin: /\$\{/, end: /\}/ }] },
+    { className: 'string', begin: /<<-?([A-Z]+)/, end: /^\s*[A-Z]+$/ },
+    { className: 'number', begin: /\b\d+(\.\d+)?\b/ },
+    { className: 'attr', begin: /\b[a-z_][a-z0-9_-]*(?=\s*=[^=])/ },
+  ],
+}));
 const md = makeMarked();
 
 // ::: containers are expanded before Markdown parsing.
