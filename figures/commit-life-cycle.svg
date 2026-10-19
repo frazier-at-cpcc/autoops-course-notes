@@ -1,0 +1,44 @@
+<svg viewBox="0 0 760 126" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The commit life cycle from edit to server, with the hooks that run at each step">
+<defs><marker id="lc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1a1209"/></marker></defs>
+<g text-anchor="middle">
+<rect x="8.5" y="24.5" width="86" height="60" rx="7" fill="#1a1209"/><rect x="6.0" y="22" width="86" height="60" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="49.0" y="50" font-size="12" font-weight="800" fill="#1a1209">Edit</text>
+<text x="49.0" y="64" font-size="9" font-weight="600" fill="#5c4a30">working tree</text>
+<rect x="103.0" y="24.5" width="86" height="60" rx="7" fill="#1a1209"/><rect x="100.5" y="22" width="86" height="60" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="143.5" y="50" font-size="11.5" font-weight="800" fill="#1a1209" class="mono">git add</text>
+<text x="143.5" y="64" font-size="9" font-weight="600" fill="#5c4a30">staging</text>
+<rect x="197.5" y="24.5" width="86" height="60" rx="7" fill="#1a1209"/><rect x="195.0" y="22" width="86" height="60" rx="7" fill="#ffd60a" stroke="#1a1209" stroke-width="2"/>
+<text x="238.0" y="46" font-size="12" font-weight="800" fill="#1a1209">pre-commit</text>
+<text x="238.0" y="60" font-size="9" font-weight="700" fill="#1a1209">format · lint</text>
+<text x="238.0" y="71" font-size="9" font-weight="700" fill="#1a1209">secret scan</text>
+<rect x="292.0" y="24.5" width="86" height="60" rx="7" fill="#1a1209"/><rect x="289.5" y="22" width="86" height="60" rx="7" fill="#ffd60a" stroke="#1a1209" stroke-width="2"/>
+<text x="332.5" y="50" font-size="11" font-weight="800" fill="#1a1209">commit-msg</text>
+<text x="332.5" y="64" font-size="9" font-weight="700" fill="#1a1209">message rules</text>
+<rect x="386.5" y="24.5" width="86" height="60" rx="7" fill="#1a1209"/><rect x="384.0" y="22" width="86" height="60" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="427.0" y="50" font-size="11.5" font-weight="800" fill="#1a1209" class="mono">git commit</text>
+<text x="427.0" y="64" font-size="9" font-weight="600" fill="#5c4a30">local history</text>
+<rect x="481.0" y="24.5" width="86" height="60" rx="7" fill="#1a1209"/><rect x="478.5" y="22" width="86" height="60" rx="7" fill="#ffd60a" stroke="#1a1209" stroke-width="2"/>
+<text x="521.5" y="50" font-size="12" font-weight="800" fill="#1a1209">pre-push</text>
+<text x="521.5" y="64" font-size="9" font-weight="700" fill="#1a1209">quick tests</text>
+<rect x="575.5" y="24.5" width="86" height="60" rx="7" fill="#1a1209"/><rect x="573.0" y="22" width="86" height="60" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="616.0" y="50" font-size="11.5" font-weight="800" fill="#1a1209" class="mono">git push</text>
+<text x="616.0" y="64" font-size="9" font-weight="600" fill="#5c4a30">to remote</text>
+<rect x="670.0" y="24.5" width="86" height="60" rx="7" fill="#1a1209"/><rect x="667.5" y="22" width="86" height="60" rx="7" fill="#6d28d9" stroke="#1a1209" stroke-width="2"/>
+<text x="710.5" y="46" font-size="12" font-weight="800" fill="#fff">Server + CI</text>
+<text x="710.5" y="60" font-size="9" font-weight="700" fill="#efe6ff">pre-receive</text>
+<text x="710.5" y="71" font-size="9" font-weight="700" fill="#efe6ff">pipeline</text>
+</g><g stroke="#1a1209" stroke-width="2" marker-end="url(#lc)">
+<path d="M92.5 52.0H99.0"/>
+<path d="M187.0 52.0H193.5"/>
+<path d="M281.5 52.0H288.0"/>
+<path d="M376.0 52.0H382.5"/>
+<path d="M470.5 52.0H477.0"/>
+<path d="M565.0 52.0H571.5"/>
+<path d="M659.5 52.0H666.0"/>
+</g>
+<path d="M195.0 87V94H564.5V87" fill="none" stroke="#1a1209" stroke-width="1.5"/>
+<text x="379.75" y="109" text-anchor="middle" font-size="9.5" font-weight="800" fill="#1a1209">CLIENT-SIDE HOOKS <tspan font-weight="600" fill="#5c4a30">run on your machine and can be skipped with&#160;</tspan><tspan class="mono" font-weight="600" fill="#6d28d9">--no-verify</tspan></text>
+<path d="M667.5 87V94H753.5V87" fill="none" stroke="#6d28d9" stroke-width="1.5"/>
+<text x="710.5" y="109" text-anchor="middle" font-size="9.5" font-weight="800" fill="#6d28d9">ENFORCED</text>
+<text x="710.5" y="121" text-anchor="middle" font-size="8.5" font-weight="600" fill="#5c4a30">cannot be skipped</text>
+</svg>

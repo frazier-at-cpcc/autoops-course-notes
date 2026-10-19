@@ -1,0 +1,50 @@
+name: Test and build notes
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          pip install pre-commit
+
+      - name: Run every command in the notes
+        run: |
+          for t in tests/*.sh; do echo "::group::$t"; bash "$t"; echo "::endgroup::"; done
+
+      - name: Build PDFs
+        run: npm run build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: course-notes-pdf
+          path: dist/*.pdf
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/*.pdf --title "$GITHUB_REF_NAME" --generate-notes

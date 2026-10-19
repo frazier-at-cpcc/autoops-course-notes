@@ -1,0 +1,66 @@
+{
+  "title": "CompTIA AutoOps+ AT0-001 Course Notes",
+  "shortTitle": "AutoOps+ AT0-001 Course Notes",
+  "author": "Frazier A. Smith, Ed.D.",
+  "affiliation": "Central Piedmont Community College",
+  "site": "vfrazier.app",
+  "version": "0.1.0-pilot",
+  "date": "October 2026",
+  "license": "CC BY-NC-SA 4.0",
+  "domains": [
+    {
+      "num": "1.0",
+      "title": "Automation Coding Concepts",
+      "weight": 31,
+      "objectives": [
+        { "num": "1.1", "title": "Given a scenario, use code to support automation" },
+        { "num": "1.2", "title": "Given a scenario, use source control techniques to version code" },
+        { "num": "1.3", "title": "Explain concepts related to infrastructure as code (IaC)" },
+        { "num": "1.4", "title": "Given a scenario, troubleshoot common issues with the code life cycle" }
+      ]
+    },
+    {
+      "num": "2.0",
+      "title": "System Configuration",
+      "weight": 25,
+      "objectives": [
+        { "num": "2.1", "title": "Given a scenario, use configuration management techniques to deploy a solution" },
+        { "num": "2.2", "title": "Compare and contrast basic approaches to automation" },
+        { "num": "2.3", "title": "Interact with RESTful systems to perform CRUD operations" },
+        { "num": "2.4", "title": "Given a scenario, troubleshoot common issues with system configuration" }
+      ]
+    },
+    {
+      "num": "3.0",
+      "title": "Continuous Integration",
+      "weight": 24,
+      "objectives": [
+        { "num": "3.1", "title": "Explain environmental factors related to CI management" },
+        { "num": "3.2", "title": "Explain workflow management concepts in CI" },
+        { "num": "3.3", "title": "Given a scenario, analyze configurations to manage basic automation pipelines" }
+      ]
+    },
+    {
+      "num": "4.0",
+      "title": "Continuous Delivery",
+      "weight": 20,
+      "objectives": [
+        { "num": "4.1", "title": "Given a scenario, implement techniques of continuous delivery (CD)" },
+        { "num": "4.2", "title": "Explain concepts related to application service levels" },
+        { "num": "4.3", "title": "Compare and contrast different methods to secure a connection to providers" }
+      ]
+    }
+  ],
+  "volumes": {
+    "master": {
+      "file": "autoops-course-notes",
+      "topics": [
+        "domain-1/1.2-git-fundamentals.md",
+        "domain-1/1.2-working-with-remotes.md",
+        "domain-1/1.2-semantic-versioning.md",
+        "domain-1/1.2-branching-strategies.md",
+        "domain-1/1.2-commit-life-cycle.md"
+      ]
+    }
+  }
+}
