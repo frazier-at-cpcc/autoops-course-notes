@@ -6,7 +6,7 @@
 # Everything runs offline against a throwaway HOME with dummy keys; nothing
 # calls a cloud API.
 # Needs: aws (AWS CLI v2), python3 with boto3, parliament (pip install
-#   parliament), actionlint, jq, gcloud
+#   parliament "setuptools<81"; parliament imports pkg_resources), actionlint, jq, gcloud
 set -euo pipefail
 WORK=$(mktemp -d)
 trap 'rm -rf "$WORK"' EXIT
