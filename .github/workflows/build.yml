@@ -60,7 +60,9 @@ jobs:
           for t in tests/*.sh; do
             echo "::group::$t"
             start=$(date +%s)
-            if bash "$t"; then echo "PASS $t ($(( $(date +%s) - start ))s)"; else echo "::error::$t failed"; fail=1; fi
+            # Tests reproduce what a student sees in a terminal; hide the Actions
+            # markers that make tools such as yamllint switch to annotation output.
+            if env -u GITHUB_ACTIONS -u GITHUB_WORKFLOW bash "$t"; then echo "PASS $t ($(( $(date +%s) - start ))s)"; else echo "::error::$t failed"; fail=1; fi
             echo "::endgroup::"
           done
           exit $fail

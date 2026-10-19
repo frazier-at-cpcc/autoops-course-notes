@@ -66,7 +66,10 @@ expect "$(head -3 <<<"$out")" "CLT VLAN 10 -> 10.10.0.0/24
 RDU VLAN 10 -> 10.10.0.0/24
 CLT VLAN 20 -> 10.20.0.0/24"
 grep -q "^Get-Subnet: .*subnet.ps1:10$" <<<"$out" || fail "error header"
-grep -qF "     | Cannot validate argument on parameter 'Vlan'. The 5000 argument is greater than the maximum allowed range of 4094." <<<"$out" || fail "ValidateRange"
+# PowerShell wraps this message to the terminal width, which differs between
+# machines; compare it with the wrapping removed.
+flat=$(sed -E 's/^ +\| ?//' <<<"$out" | tr '\n' ' ' | tr -s ' ')
+grep -qF "Cannot validate argument on parameter 'Vlan'. The 5000 argument is greater than the maximum allowed range of 4094." <<<"$flat" || fail "ValidateRange"
 
 echo "== conditional table claims"
 pwsh -NoProfile -c "if (('CORE' -eq 'core') -and -not ('CORE' -ceq 'core')) { 'ok' }" | grep -qx ok || fail "-eq / -ceq"

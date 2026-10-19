@@ -68,15 +68,22 @@ code=$(curl -s -o /dev/null -w '%{http_code}\n' \
     http://localhost:18352/v2/_catalog)
 echo "$code"; [ "$code" = "401" ]
 if docker push "$REG:1.4.0" >"$WORK/push.out" 2>&1; then fail "anonymous push succeeded"; fi
-grep -o 'push access denied.*' "$WORK/push.out"
-grep -q 'no basic auth credentials' "$WORK/push.out"
+cat "$WORK/push.out"
+# The wording shown in the notes is Docker CLI 29's; other versions phrase the
+# refusal differently, so the exact text is only asserted on Docker 29.
+grep -qiE 'denied|unauthorized|authentication required|no basic auth' "$WORK/push.out"
+DOCKER_MAJOR=$(docker version --format '{{.Client.Version}}' | cut -d. -f1)
+if [ "$DOCKER_MAJOR" = "29" ]; then
+  grep -q 'push access denied' "$WORK/push.out"
+  grep -q 'no basic auth credentials' "$WORK/push.out"
+fi
 
 say "log in, push, record the digest"
 out=$(echo 'Pipel1ne!' | docker login localhost:18352 \
     -u ci-bot --password-stdin 2>&1)
 echo "$out"
 grep -q 'Login Succeeded' <<<"$out"
-grep -q 'credentials are stored unencrypted' <<<"$out"
+if [ "$DOCKER_MAJOR" = "29" ]; then grep -q 'credentials are stored unencrypted' <<<"$out"; fi
 V1=$(docker push "$REG:1.4.0" \
     | awk '/digest:/{print $3}')
 echo "$V1"
