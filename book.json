@@ -61,6 +61,15 @@
         "domain-1/1.2-branching-strategies.md",
         "domain-1/1.2-commit-life-cycle.md"
       ]
+    },
+    "preview-obj-3.2-3.3": {
+      "file": "preview-obj-3.2-3.3",
+      "topics": [
+        "domain-3/3.2-pipeline-orchestration.md",
+        "domain-3/3.2-pipeline-enhancements.md",
+        "domain-3/3.3-triggers-and-chatops.md",
+        "domain-3/3.3-pipeline-definitions.md"
+      ]
     }
   }
 }
