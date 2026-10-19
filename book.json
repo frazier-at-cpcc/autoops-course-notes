@@ -94,6 +94,15 @@
     }
   ],
   "volumes": {
+    "preview-obj-4": {
+      "file": "preview-obj-4",
+      "topics": [
+        "domain-4/4.1-deployment-strategies.md",
+        "domain-4/4.1-testing-and-validation.md",
+        "domain-4/4.2-service-levels.md",
+        "domain-4/4.3-provider-connections.md"
+      ]
+    },
     "master": {
       "file": "autoops-course-notes",
       "topics": [
