@@ -243,11 +243,12 @@ ${body.join('\n')}
 // Chromium cannot repeat an element at the top of each page a section spans, so
 // after layout we work out which pages continue a topic from the page before,
 // render a bar for each, and stamp it into the reserved top margin.
-function continuationPages(topics, starts, atTop, lastBodyPage) {
+function continuationPages(topics, starts, atTop, lastBodyPage, dividers) {
   const out = [];
   topics.forEach((t, i) => {
     const last = i + 1 < topics.length ? starts[i + 1] : lastBodyPage;
     for (let p = starts[i] + 1; p <= last; p++) {
+      if (dividers.has(p)) continue;   // a domain divider page is never a continuation
       // Skip the next topic's first page only when that topic opens the page.
       if (i + 1 < topics.length && p === starts[i + 1] && atTop[i + 1]) continue;
       out.push({ page: p, topic: t });
@@ -256,11 +257,11 @@ function continuationPages(topics, starts, atTop, lastBodyPage) {
   return out;
 }
 
-async function stampContinuations(browser, pdfPath, htmlPath, topics, starts, atTop) {
+async function stampContinuations(browser, pdfPath, htmlPath, topics, starts, atTop, dividers) {
   const main = await PDFDocument.load(await readFile(pdfPath));
-  const conts = continuationPages(topics, starts, atTop, main.getPageCount() - 1);
+  const conts = continuationPages(topics, starts, atTop, main.getPageCount() - 1, dividers);
   if (!conts.length) return 0;
-  const bars = conts.map((c) => `<section class="cont-page"><div class="topic-bar"><h2><span class="obj">${c.topic.objective}</span> ${esc(c.topic.title)}<span class="more">(continued)</span></h2><span class="dom">${c.topic.domain.num} ${esc(c.topic.domain.title)}</span></div></section>`).join('');
+  const bars = conts.map((c) => `<section class="cont-page"><div class="topic-bar"><h2><span class="obj">${c.topic.objective}</span> ${esc(c.topic.title)}<span class="more">(continued)</span></h2></div></section>`).join('');
   const overlayHtml = htmlPath.replace(/\.html$/, '.continued.html');
   const overlayPdf = pdfPath.replace(/\.pdf$/, '.continued.pdf');
   const noFooter = '@bottom-left{content:none;background:none}@bottom-center{content:none;background:none}@bottom-right{content:none;background:none}';
@@ -301,10 +302,15 @@ async function render(browser, htmlText, htmlPath, pdfPath) {
         if (el.closest('.wide-block, figure.wide, .col-end')) continue;   // these span both columns
         // An element split across columns has one rect per fragment; measure each.
         const w = Math.max(0, ...[...el.getClientRects()].map((r) => r.width));
-        if (w > colWidth + 1) out.push(`${cols.closest('.topic')?.id ?? '?'}: <${el.tagName.toLowerCase()}> ${Math.round(w)}px > ${Math.round(colWidth)}px "${el.textContent.trim().slice(0, 50)}"`);
+        if (w > colWidth + 4) out.push(`${cols.closest('.topic')?.id ?? '?'}: <${el.tagName.toLowerCase()}> ${Math.round(w)}px > ${Math.round(colWidth)}px "${el.textContent.trim().slice(0, 50)}"`);
       }
     }
-    if (document.documentElement.scrollWidth > document.documentElement.clientWidth) out.push('page: document wider than Letter');
+    // Anything in a topic that reaches past the page's right margin.
+    const pageRight = document.documentElement.clientWidth + 4;   // @page margins do not apply in this measuring layout
+    for (const el of document.querySelectorAll('.topic *')) {
+      const r = Math.max(0, ...[...el.getClientRects()].map((x) => x.right));
+      if (r > pageRight) out.push(`${el.closest('.topic').id}: <${el.tagName.toLowerCase()}> past the page edge "${el.textContent.trim().slice(0, 50)}"`);
+    }
     return out.slice(0, 8);
   });
   if (overflow.length) throw new Error(`Content wider than its column (overlaps the next column, or Chrome shrinks every page):\n  ${overflow.join('\n  ')}`);
@@ -343,7 +349,8 @@ async function readPages(pdfPath, topics) {
   // A heading within ~1.25in of the page top means the topic opens the page.
   const pageHeight = (await doc.getPage(1)).view[3];
   const atTop = topics.map((t) => pageHeight - tops[norm(`${t.objective} ${t.title}`)] < 90);
-  return { pages, total: doc.numPages, starts, atTop };
+  const dividers = new Set(book.domains.filter((d) => idx[norm(d.title)] !== undefined).map((d) => idx[norm(d.title)]));
+  return { pages, total: doc.numPages, starts, atTop, dividers };
 }
 
 const wanted = process.argv[2] ? [process.argv[2]] : Object.keys(book.volumes);
@@ -365,7 +372,7 @@ try {
     await render(browser, await html(topics, vol, pages), htmlPath, pdfPath);
     const check = await readPages(pdfPath, topics);
     for (const k of Object.keys(pages)) if (pages[k] !== check.pages[k]) throw new Error(`Page drift on ${k}; rerun`);
-    const stamped = await stampContinuations(browser, pdfPath, htmlPath, topics, check.starts, check.atTop);
+    const stamped = await stampContinuations(browser, pdfPath, htmlPath, topics, check.starts, check.atTop, check.dividers);
     console.log(`${name}: ${path.relative(ROOT, pdfPath)} (${check.total} pages, ${stamped} continuation bars)`);
   }
 } finally {

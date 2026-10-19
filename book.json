@@ -13,10 +13,22 @@
       "title": "Automation Coding Concepts",
       "weight": 31,
       "objectives": [
-        { "num": "1.1", "title": "Given a scenario, use code to support automation" },
-        { "num": "1.2", "title": "Given a scenario, use source control techniques to version code" },
-        { "num": "1.3", "title": "Explain concepts related to infrastructure as code (IaC)" },
-        { "num": "1.4", "title": "Given a scenario, troubleshoot common issues with the code life cycle" }
+        {
+          "num": "1.1",
+          "title": "Given a scenario, use code to support automation"
+        },
+        {
+          "num": "1.2",
+          "title": "Given a scenario, use source control techniques to version code"
+        },
+        {
+          "num": "1.3",
+          "title": "Explain concepts related to infrastructure as code (IaC)"
+        },
+        {
+          "num": "1.4",
+          "title": "Given a scenario, troubleshoot common issues with the code life cycle"
+        }
       ]
     },
     {
@@ -24,10 +36,22 @@
       "title": "System Configuration",
       "weight": 25,
       "objectives": [
-        { "num": "2.1", "title": "Given a scenario, use configuration management techniques to deploy a solution" },
-        { "num": "2.2", "title": "Compare and contrast basic approaches to automation" },
-        { "num": "2.3", "title": "Interact with RESTful systems to perform CRUD operations" },
-        { "num": "2.4", "title": "Given a scenario, troubleshoot common issues with system configuration" }
+        {
+          "num": "2.1",
+          "title": "Given a scenario, use configuration management techniques to deploy a solution"
+        },
+        {
+          "num": "2.2",
+          "title": "Compare and contrast basic approaches to automation"
+        },
+        {
+          "num": "2.3",
+          "title": "Given a scenario, interact with RESTful systems to perform create, read, update, and delete (CRUD) operations"
+        },
+        {
+          "num": "2.4",
+          "title": "Given a scenario, troubleshoot common issues with system configuration"
+        }
       ]
     },
     {
@@ -35,9 +59,18 @@
       "title": "Continuous Integration",
       "weight": 24,
       "objectives": [
-        { "num": "3.1", "title": "Explain environmental factors related to CI management" },
-        { "num": "3.2", "title": "Explain workflow management concepts in CI" },
-        { "num": "3.3", "title": "Given a scenario, analyze configurations to manage basic automation pipelines" }
+        {
+          "num": "3.1",
+          "title": "Explain environmental factors related to CI management"
+        },
+        {
+          "num": "3.2",
+          "title": "Explain workflow management concepts in CI"
+        },
+        {
+          "num": "3.3",
+          "title": "Given a scenario, analyze configurations to manage basic automation pipelines"
+        }
       ]
     },
     {
@@ -45,9 +78,18 @@
       "title": "Continuous Delivery",
       "weight": 20,
       "objectives": [
-        { "num": "4.1", "title": "Given a scenario, implement techniques of continuous delivery (CD)" },
-        { "num": "4.2", "title": "Explain concepts related to application service levels" },
-        { "num": "4.3", "title": "Compare and contrast different methods to secure a connection to providers" }
+        {
+          "num": "4.1",
+          "title": "Given a scenario, implement techniques of continuous delivery (CD)"
+        },
+        {
+          "num": "4.2",
+          "title": "Explain concepts related to application service levels"
+        },
+        {
+          "num": "4.3",
+          "title": "Compare and contrast different methods to secure a connection to providers"
+        }
       ]
     }
   ],
@@ -55,21 +97,24 @@
     "master": {
       "file": "autoops-course-notes",
       "topics": [
-        "domain-1/1.2-git-fundamentals.md",
-        "domain-1/1.2-working-with-remotes.md",
-        "domain-1/1.2-semantic-versioning.md",
-        "domain-1/1.2-branching-strategies.md",
-        "domain-1/1.2-commit-life-cycle.md"
-      ]
-    },
-    "preview-obj-1.1": {
-      "file": "preview-obj-1.1",
-      "topics": [
         "domain-1/1.1-variables-and-functions.md",
         "domain-1/1.1-data-types.md",
         "domain-1/1.1-regex-and-logs.md",
         "domain-1/1.1-command-line-tools.md",
-        "domain-1/1.1-dependency-management.md"
+        "domain-1/1.1-dependency-management.md",
+        "domain-1/1.2-git-fundamentals.md",
+        "domain-1/1.2-working-with-remotes.md",
+        "domain-1/1.2-semantic-versioning.md",
+        "domain-1/1.2-branching-strategies.md",
+        "domain-1/1.2-commit-life-cycle.md",
+        "domain-1/1.3-iac-principles.md",
+        "domain-1/1.3-declarative-and-idempotent.md",
+        "domain-1/1.4-syntax-and-runtime-errors.md",
+        "domain-1/1.4-git-errors.md",
+        "domain-2/2.3-rest-fundamentals.md",
+        "domain-2/2.3-rest-tools.md",
+        "domain-2/2.4-troubleshooting-configuration.md",
+        "domain-2/2.4-config-file-syntax.md"
       ]
     }
   }

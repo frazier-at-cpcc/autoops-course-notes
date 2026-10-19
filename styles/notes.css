@@ -397,7 +397,7 @@ table.t th {
 table.t td { padding: 3pt 6pt; border-top: 1px solid #d8d2c8; vertical-align: top; }
 table.t tr:nth-child(even) td { background: var(--highlight-soft); }
 table.t td:first-child { font-weight: 700; }
-table.t td code { white-space: nowrap; }
+table.t td code { white-space: normal; }
 .wide-block { column-span: all; }
 
 /* ---------- Figures ---------- */
