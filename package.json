@@ -4,7 +4,7 @@
   "description": "Open course notes for CompTIA AutoOps+ AT0-001, built from Markdown to PDF.",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "test": "bash tests/1.2-source-control.sh && bash tests/1.2-semver.sh"
+    "test": "for t in tests/*.sh; do bash \"$t\" || exit 1; done"
   },
   "repository": {
     "type": "git",

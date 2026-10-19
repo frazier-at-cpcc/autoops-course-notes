@@ -11,8 +11,19 @@ contents, domain dividers, figures, and PDF bookmarks.
 
 ## Status
 
-Pilot release: objective 1.2 (source control) is complete. The remaining
-objectives are listed as "coming soon" in the contents.
+Version 1.0.0 covers every objective in all four exam domains: 13 objectives in
+38 topics, about 100 pages. The build produces the complete book and one PDF
+per domain:
+
+| File | Contents |
+|---|---|
+| `autoops-course-notes.pdf` | All four domains |
+| `autoops-course-notes-domain-1.pdf` | 1.0 Automation Coding Concepts |
+| `autoops-course-notes-domain-2.pdf` | 2.0 System Configuration |
+| `autoops-course-notes-domain-3.pdf` | 3.0 Continuous Integration |
+| `autoops-course-notes-domain-4.pdf` | 4.0 Continuous Delivery |
+
+See [AUTHORING.md](AUTHORING.md) for how topics are written and tested.
 
 ## Every command is tested
 
@@ -22,12 +33,14 @@ fails and the notes get fixed.
 
 ```sh
 npm install
-npm test                        # 1.2 source control + semver checks
-bash tests/1.2-precommit.sh     # needs pre-commit and network access
-npm run build                   # writes dist/autoops-course-notes.pdf
+for t in tests/*.sh; do bash "$t"; done   # every command in the notes
+npm run build                             # writes all PDFs to dist/
 ```
 
-The build uses Playwright's Chromium. Locally, run `npx playwright install chromium` once.
+The tests use Docker, Terraform, Ansible, PowerShell, and other tools; each
+script lists what it needs in a `# Needs:` comment, and
+`.github/workflows/build.yml` installs the full set on a fresh runner. The build
+uses Playwright's Chromium; locally, run `npx playwright install chromium` once.
 
 ## Writing a topic
 
