@@ -119,6 +119,14 @@
         "domain-2/2.4-troubleshooting-configuration.md",
         "domain-2/2.4-config-file-syntax.md"
       ]
+    },
+    "preview-obj-2.1": {
+      "file": "preview-obj-2.1",
+      "topics": [
+        "domain-2/2.1-drift-and-state.md",
+        "domain-2/2.1-workload-configuration.md",
+        "domain-2/2.1-virtual-network-infrastructure.md"
+      ]
     }
   }
 }
