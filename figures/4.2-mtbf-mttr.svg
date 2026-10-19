@@ -1,0 +1,42 @@
+<svg viewBox="0 0 760 168" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A service timeline: uptime between failures measures MTBF, repair time after each failure measures MTTR">
+<rect x="22.5" y="36.5" width="720" height="28" rx="7" fill="#1a1209"/>
+<rect x="20" y="34" width="720" height="28" rx="7" fill="#efe6ff"/>
+<rect x="196" y="34" width="66" height="28" fill="#9a3412"/>
+<rect x="440" y="34" width="38" height="28" fill="#9a3412"/>
+<rect x="612" y="34" width="52" height="28" fill="#9a3412"/>
+<rect x="20" y="34" width="720" height="28" rx="7" fill="none" stroke="#1a1209" stroke-width="2"/>
+<text x="108.0" y="52" font-size="10.5" font-weight="800" fill="#6d28d9" text-anchor="middle">up</text>
+<text x="229.0" y="52" font-size="10" font-weight="800" fill="#fff" text-anchor="middle">down</text>
+<text x="351.0" y="52" font-size="10.5" font-weight="800" fill="#6d28d9" text-anchor="middle">up</text>
+<text x="459.0" y="52" font-size="10" font-weight="800" fill="#fff" text-anchor="middle">down</text>
+<text x="545.0" y="52" font-size="10.5" font-weight="800" fill="#6d28d9" text-anchor="middle">up</text>
+<text x="638.0" y="52" font-size="10" font-weight="800" fill="#fff" text-anchor="middle">down</text>
+<text x="702.0" y="52" font-size="10.5" font-weight="800" fill="#6d28d9" text-anchor="middle">up</text>
+<path d="M191 22L201 22L196 31z" fill="#9a3412"/>
+<text x="205" y="28" font-size="9.5" font-weight="800" fill="#9a3412" text-anchor="start">failure 1</text>
+<path d="M435 22L445 22L440 31z" fill="#9a3412"/>
+<text x="449" y="28" font-size="9.5" font-weight="800" fill="#9a3412" text-anchor="start">failure 2</text>
+<path d="M607 22L617 22L612 31z" fill="#9a3412"/>
+<text x="621" y="28" font-size="9.5" font-weight="800" fill="#9a3412" text-anchor="start">failure 3</text>
+<path d="M264 70V76H438V70" fill="none" stroke="#6d28d9" stroke-width="1.6"/>
+<text x="351.0" y="89" font-size="9.5" font-weight="700" fill="#6d28d9" text-anchor="middle">time between failures</text>
+<path d="M198 70V76H260V70" fill="none" stroke="#9a3412" stroke-width="1.6"/>
+<text x="229.0" y="89" font-size="9.5" font-weight="700" fill="#9a3412" text-anchor="middle">time to repair</text>
+<path d="M480 70V76H610V70" fill="none" stroke="#6d28d9" stroke-width="1.6"/>
+<text x="545.0" y="89" font-size="9.5" font-weight="700" fill="#6d28d9" text-anchor="middle">time between failures</text>
+<path d="M614 70V76H662V70" fill="none" stroke="#9a3412" stroke-width="1.6"/>
+<text x="638.0" y="89" font-size="9.5" font-weight="700" fill="#9a3412" text-anchor="middle">repair</text>
+<rect x="22.5" y="114.5" width="232" height="40" rx="7" fill="#1a1209"/>
+<rect x="20.0" y="112" width="232" height="40" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="136.0" y="128" font-size="11" font-weight="800" fill="#1a1209" text-anchor="middle">MTBF</text>
+<text x="136.0" y="143" font-size="10" font-weight="600" fill="#1a1209" text-anchor="middle" class="mono">total uptime / failures</text>
+<rect x="266.5" y="114.5" width="232" height="40" rx="7" fill="#1a1209"/>
+<rect x="264.0" y="112" width="232" height="40" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="380.0" y="128" font-size="11" font-weight="800" fill="#1a1209" text-anchor="middle">MTTR</text>
+<text x="380.0" y="143" font-size="10" font-weight="600" fill="#1a1209" text-anchor="middle" class="mono">total repair time / failures</text>
+<rect x="510.5" y="114.5" width="232" height="40" rx="7" fill="#1a1209"/>
+<rect x="508.0" y="112" width="232" height="40" rx="7" fill="#ffd60a" stroke="#1a1209" stroke-width="2"/>
+<text x="624.0" y="128" font-size="11" font-weight="800" fill="#1a1209" text-anchor="middle">Availability</text>
+<text x="624.0" y="143" font-size="10" font-weight="600" fill="#1a1209" text-anchor="middle" class="mono">MTBF / (MTBF + MTTR)</text>
+<text x="740" y="166" font-size="9" font-weight="600" fill="#5c4a30" text-anchor="end">not to scale</text>
+</svg>

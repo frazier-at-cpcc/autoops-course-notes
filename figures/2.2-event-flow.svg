@@ -1,0 +1,64 @@
+<svg viewBox="0 0 760 262" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An event source publishes to a topic. The topic pushes a copy to notification subscribers and a copy into a queue. A function consumes the queue; failed messages are retried and, after a limit, moved to a dead-letter queue.">
+  <defs>
+    <marker id="ef-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1a1209"/></marker>
+    <marker id="ef-pur" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6d28d9"/></marker>
+    <marker id="ef-rust" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9a3412"/></marker>
+  </defs>
+  <g text-anchor="middle">
+    <!-- event source -->
+    <rect x="12.5" y="82.5" width="132" height="60" rx="7" fill="#1a1209"/>
+    <rect x="10" y="80" width="132" height="60" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+    <text x="76" y="105" font-size="13" font-weight="800" fill="#1a1209">Event source</text>
+    <text x="76" y="122" font-size="9.5" font-weight="600" fill="#5c4a30">Git push, upload, alarm</text>
+    <!-- topic -->
+    <rect x="202.5" y="82.5" width="132" height="60" rx="7" fill="#1a1209"/>
+    <rect x="200" y="80" width="132" height="60" rx="7" fill="#ffd60a" stroke="#1a1209" stroke-width="2"/>
+    <text x="266" y="102" font-size="13" font-weight="800" fill="#1a1209">Topic (pub/sub)</text>
+    <text x="266" y="118" font-size="9.5" font-weight="700" fill="#1a1209">SNS, EventBridge,</text>
+    <text x="266" y="130" font-size="9.5" font-weight="700" fill="#1a1209">fanout exchange</text>
+    <!-- notification subscribers -->
+    <rect x="402.5" y="16.5" width="140" height="56" rx="7" fill="#1a1209"/>
+    <rect x="400" y="14" width="140" height="56" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+    <text x="470" y="38" font-size="13" font-weight="800" fill="#1a1209">Subscribers</text>
+    <text x="470" y="55" font-size="9.5" font-weight="600" fill="#5c4a30">webhook, email, chat</text>
+    <!-- queue -->
+    <rect x="402.5" y="122.5" width="140" height="56" rx="7" fill="#1a1209"/>
+    <rect x="400" y="120" width="140" height="56" rx="7" fill="#efe6ff" stroke="#1a1209" stroke-width="2"/>
+    <text x="470" y="144" font-size="13" font-weight="800" fill="#1a1209">Queue</text>
+    <text x="470" y="161" font-size="9.5" font-weight="600" fill="#5c4a30">SQS, RabbitMQ, Service Bus</text>
+    <!-- function -->
+    <rect x="612.5" y="122.5" width="140" height="56" rx="7" fill="#1a1209"/>
+    <rect x="610" y="120" width="140" height="56" rx="7" fill="#6d28d9" stroke="#1a1209" stroke-width="2"/>
+    <text x="680" y="144" font-size="13" font-weight="800" fill="#fff">Function (FaaS)</text>
+    <text x="680" y="161" font-size="9.5" font-weight="600" fill="#efe6ff">Lambda, Azure Functions</text>
+    <!-- DLQ -->
+    <rect x="402.5" y="204.5" width="140" height="50" rx="7" fill="#1a1209"/>
+    <rect x="400" y="202" width="140" height="50" rx="7" fill="#fffae0" stroke="#9a3412" stroke-width="2"/>
+    <text x="470" y="223" font-size="12.5" font-weight="800" fill="#9a3412">Dead-letter queue</text>
+    <text x="470" y="240" font-size="9.5" font-weight="600" fill="#5c4a30">waits for a human</text>
+  </g>
+
+  <!-- arrows -->
+  <g stroke="#1a1209" stroke-width="2" fill="none" marker-end="url(#ef-ink)">
+    <path d="M144 110H192"/>
+    <path d="M334 96L392 48"/>
+    <path d="M334 124L392 144"/>
+    <path d="M542 148H602"/>
+  </g>
+  <g stroke="#6d28d9" stroke-width="2" fill="none" marker-end="url(#ef-pur)">
+    <path d="M660 118C650 92 572 92 548 124"/>
+  </g>
+  <g stroke="#9a3412" stroke-width="2" fill="none" marker-end="url(#ef-rust)">
+    <path d="M470 178V196"/>
+  </g>
+
+  <!-- arrow labels -->
+  <g font-size="9.5" font-weight="700" fill="#1a1209">
+    <text x="168" y="102" text-anchor="middle">event</text>
+    <text x="354" y="66" text-anchor="end">push a copy</text>
+    <text x="374" y="114" text-anchor="middle">copy</text>
+    <text x="572" y="166" text-anchor="middle">trigger</text>
+  </g>
+  <text x="604" y="86" font-size="9.5" font-weight="700" fill="#6d28d9" text-anchor="middle">no ack: redeliver</text>
+  <text x="480" y="192" font-size="9.5" font-weight="700" fill="#9a3412">after N failed tries</text>
+</svg>

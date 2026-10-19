@@ -1,0 +1,52 @@
+<svg viewBox="0 0 760 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Feature branching compared with release branching">
+  <defs>
+    <marker id="br-pur" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6d28d9"/></marker>
+  </defs>
+  <!-- panel titles -->
+  <text x="20" y="18" font-size="11" font-weight="800" letter-spacing="1.6" fill="#6d28d9">FEATURE BRANCHING</text>
+  <text x="400" y="18" font-size="11" font-weight="800" letter-spacing="1.6" fill="#6d28d9">RELEASE BRANCHING</text>
+  <path d="M380 10V190" stroke="#d8d2c8" stroke-width="1.5" stroke-dasharray="3 4"/>
+
+  <!-- LEFT: main -->
+  <path d="M30 140H360" stroke="#1a1209" stroke-width="3"/>
+  <text x="30" y="166" class="mono" font-size="11" font-weight="600" fill="#1a1209">main</text>
+  <!-- feature branch -->
+  <path d="M95 140C115 140 115 80 140 80H230C258 80 262 140 282 140" stroke="#6d28d9" stroke-width="3" fill="none"/>
+  <text x="140" y="66" class="mono" font-size="11" font-weight="600" fill="#6d28d9">feature/NET-142-ntp</text>
+  <g stroke="#1a1209" stroke-width="2.2">
+    <circle cx="50" cy="140" r="7" fill="#fff"/><circle cx="95" cy="140" r="7" fill="#fff"/>
+    <circle cx="200" cy="140" r="7" fill="#fff"/>
+    <circle cx="282" cy="140" r="9" fill="#ffd60a"/>
+    <circle cx="335" cy="140" r="7" fill="#fff"/>
+    <circle cx="160" cy="80" r="7" fill="#6d28d9"/><circle cx="210" cy="80" r="7" fill="#6d28d9"/>
+  </g>
+  <!-- PR chip -->
+  <rect x="268" y="96" width="104" height="20" rx="10" fill="#fff" stroke="#1a1209" stroke-width="1.6"/>
+  <text x="320" y="110" text-anchor="middle" font-size="9.5" font-weight="800" fill="#1a1209">pull request + CI</text>
+  <text x="282" y="166" text-anchor="middle" font-size="9.5" font-weight="700" fill="#5c4a30">merge commit</text>
+  <text x="200" y="186" text-anchor="middle" font-size="9.5" font-weight="600" fill="#5c4a30">main stays deployable; unfinished work stays on the branch</text>
+
+  <!-- RIGHT: main -->
+  <path d="M410 64H740" stroke="#1a1209" stroke-width="3"/>
+  <text x="410" y="50" class="mono" font-size="11" font-weight="600" fill="#1a1209">main</text>
+  <!-- release branch -->
+  <path d="M480 64C500 64 500 136 525 136H730" stroke="#6d28d9" stroke-width="3" fill="none"/>
+  <text x="740" y="128" text-anchor="end" class="mono" font-size="11" font-weight="600" fill="#6d28d9">release/2.1</text>
+  <g stroke="#1a1209" stroke-width="2.2">
+    <circle cx="430" cy="64" r="7" fill="#fff"/><circle cx="480" cy="64" r="7" fill="#fff"/>
+    <circle cx="560" cy="64" r="7" fill="#fff"/><circle cx="640" cy="64" r="7" fill="#fff"/>
+    <circle cx="690" cy="64" r="7" fill="#efe6ff"/>
+    <circle cx="560" cy="136" r="7" fill="#6d28d9"/><circle cx="640" cy="136" r="7" fill="#6d28d9"/>
+  </g>
+  <!-- tags -->
+  <g font-size="9.5" font-weight="800" text-anchor="middle">
+    <rect x="533" y="150" width="54" height="17" rx="4" fill="#ffd60a" stroke="#1a1209" stroke-width="1.5"/><text x="560" y="162" fill="#1a1209">v2.1.0</text>
+    <rect x="613" y="150" width="54" height="17" rx="4" fill="#ffd60a" stroke="#1a1209" stroke-width="1.5"/><text x="640" y="162" fill="#1a1209">v2.1.1</text>
+  </g>
+  <!-- cherry-pick -->
+  <path d="M646 128C665 108 680 96 686 76" stroke="#6d28d9" stroke-width="2" stroke-dasharray="4 3" fill="none" marker-end="url(#br-pur)"/>
+  <text x="640" y="100" text-anchor="end" font-size="9.5" font-weight="700" fill="#6d28d9">fix carried</text>
+  <text x="640" y="111" text-anchor="end" font-size="9.5" font-weight="700" fill="#6d28d9">back to main</text>
+  <text x="610" y="48" text-anchor="middle" font-size="9.5" font-weight="600" fill="#5c4a30">new features keep landing on main</text>
+  <text x="575" y="186" text-anchor="middle" font-size="9.5" font-weight="600" fill="#5c4a30">release branch takes fixes only; each fix ships as a patch tag</text>
+</svg>

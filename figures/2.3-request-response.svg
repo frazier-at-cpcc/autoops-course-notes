@@ -1,0 +1,75 @@
+<svg viewBox="0 0 760 318" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An HTTP request from a client to a REST API and the response that comes back, with the request line, headers, blank line, and body labeled">
+  <defs>
+    <marker id="rr-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1a1209"/></marker>
+    <marker id="rr-pur" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#6d28d9"/></marker>
+  </defs>
+  <!-- client and server -->
+  <g text-anchor="middle" font-weight="800">
+    <rect x="12.5" y="114.5" width="100" height="92" rx="7" fill="#1a1209"/>
+    <rect x="10" y="112" width="100" height="92" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+    <text x="60" y="148" font-size="14" fill="#1a1209">Client</text>
+    <text x="60" y="168" font-size="10" font-weight="600" fill="#5c4a30">curl, wget,</text>
+    <text x="60" y="182" font-size="10" font-weight="600" fill="#5c4a30">Postman, script</text>
+    <rect x="652.5" y="114.5" width="100" height="92" rx="7" fill="#1a1209"/>
+    <rect x="650" y="112" width="100" height="92" rx="7" fill="#6d28d9" stroke="#1a1209" stroke-width="2"/>
+    <text x="700" y="148" font-size="14" fill="#fff">REST API</text>
+    <text x="700" y="168" font-size="10" font-weight="600" fill="#efe6ff">resource</text>
+    <text x="700" y="182" font-size="10" font-weight="600" fill="#efe6ff" class="mono">/api/v1/vlans</text>
+  </g>
+
+  <!-- request card -->
+  <rect x="152.5" y="12.5" width="458" height="134" rx="7" fill="#1a1209"/>
+  <rect x="150" y="10" width="458" height="134" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+  <rect x="151" y="11" width="456" height="21" rx="6" fill="#fffae0"/>
+  <path d="M151 33H607" stroke="#1a1209" stroke-width="1.5"/>
+  <g font-size="10.5" fill="#1a1209">
+    <text class="mono" x="162" y="26" font-weight="600"><tspan fill="#9a3412">POST</tspan> /api/v1/vlans HTTP/1.1</text>
+    <text class="mono" x="162" y="52">Host: 127.0.0.1:18300</text>
+    <text class="mono" x="162" y="67">Authorization: Bearer s3cr3t-admin</text>
+    <text class="mono" x="162" y="82">Content-Type: application/json</text>
+    <text class="mono" x="162" y="97">Accept: application/json</text>
+    <text class="mono" x="162" y="131">{"id": 30, "name": "voice"}</text>
+  </g>
+  <path d="M160 111H440" stroke="#d8d2c8" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <g font-size="10" font-weight="700" fill="#5c4a30">
+    <text x="470" y="26">request line: method + URI</text>
+    <text x="470" y="75">request headers</text>
+    <text x="470" y="115">blank line</text>
+    <text x="470" y="134">body (JSON)</text>
+  </g>
+  <path d="M458 41H462V101H458" stroke="#5c4a30" stroke-width="1.5" fill="none"/>
+
+  <!-- response card -->
+  <rect x="152.5" y="174.5" width="458" height="134" rx="7" fill="#1a1209"/>
+  <rect x="150" y="172" width="458" height="134" rx="7" fill="#efe6ff" stroke="#1a1209" stroke-width="2"/>
+  <rect x="151" y="173" width="456" height="21" rx="6" fill="#c4b3ff"/>
+  <path d="M151 195H607" stroke="#1a1209" stroke-width="1.5"/>
+  <g font-size="10.5" fill="#1a1209">
+    <text class="mono" x="162" y="188" font-weight="600">HTTP/1.1 <tspan fill="#3a1d70">201 Created</tspan></text>
+    <text class="mono" x="162" y="214">Location: /api/v1/vlans/30</text>
+    <text class="mono" x="162" y="229">Content-Type: application/json</text>
+    <text class="mono" x="162" y="244">X-RateLimit-Remaining: 96</text>
+    <text class="mono" x="162" y="259">Content-Length: 56</text>
+    <text class="mono" x="162" y="293">{"id": 30, "name": "voice", ...}</text>
+  </g>
+  <path d="M160 273H440" stroke="#c4b3ff" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <g font-size="10" font-weight="700" fill="#5c4a30">
+    <text x="470" y="188">status line: code + reason</text>
+    <text x="470" y="237">response headers</text>
+    <text x="470" y="277">blank line</text>
+    <text x="470" y="296">body (JSON)</text>
+  </g>
+  <path d="M458 203H462V263H458" stroke="#5c4a30" stroke-width="1.5" fill="none"/>
+
+  <!-- flow arrows -->
+  <g fill="none" stroke-width="2">
+    <path d="M60 106C60 78 92 72 142 72" stroke="#1a1209" marker-end="url(#rr-ink)"/>
+    <path d="M616 72C668 72 700 78 700 104" stroke="#1a1209" marker-end="url(#rr-ink)"/>
+    <path d="M700 212C700 232 668 240 616 240" stroke="#6d28d9" marker-end="url(#rr-pur)"/>
+    <path d="M142 240C92 240 60 232 60 212" stroke="#6d28d9" marker-end="url(#rr-pur)"/>
+  </g>
+  <g font-size="11" font-weight="800" letter-spacing="1.2" text-anchor="middle">
+    <text x="60" y="58" fill="#1a1209">REQUEST</text>
+    <text x="60" y="264" fill="#6d28d9">RESPONSE</text>
+  </g>
+</svg>

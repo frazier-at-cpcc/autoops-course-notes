@@ -1,0 +1,36 @@
+<svg viewBox="0 0 360 232" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A function's local scope nested inside the global scope. Lookups go from local to global; code outside the function cannot see its locals.">
+  <defs>
+    <marker id="vs-pur" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6d28d9"/></marker>
+    <marker id="vs-rust" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9a3412"/></marker>
+  </defs>
+  <!-- global scope -->
+  <rect x="10.5" y="10.5" width="340" height="168" rx="7" fill="#1a1209"/>
+  <rect x="8" y="8" width="340" height="168" rx="7" fill="#efe6ff" stroke="#1a1209" stroke-width="2"/>
+  <text x="22" y="28" font-size="10" font-weight="800" letter-spacing="1.4" fill="#3a1d70">GLOBAL SCOPE: scope.py</text>
+  <g class="mono" font-size="11.5" font-weight="600" fill="#1a1209">
+    <text x="22" y="50">retries = 3</text>
+    <text x="22" y="67">site = "CLT"</text>
+  </g>
+  <!-- local scope -->
+  <rect x="24.5" y="84.5" width="196" height="78" rx="7" fill="#1a1209"/>
+  <rect x="22" y="82" width="196" height="78" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+  <text x="34" y="100" font-size="9.5" font-weight="800" letter-spacing="1.2" fill="#6d28d9">LOCAL SCOPE: connect()</text>
+  <g class="mono" font-size="11.5" font-weight="600" fill="#1a1209">
+    <text x="34" y="120">host     <tspan fill="#5c4a30" font-size="10">(parameter)</tspan></text>
+    <text x="34" y="138">timeout = 5</text>
+    <text x="34" y="154" fill="#5c4a30" font-size="10">uses retries</text>
+  </g>
+  <!-- lookup arrow: local to global -->
+  <path d="M124 150C246 150 262 46 120 46" fill="none" stroke="#6d28d9" stroke-width="2" marker-end="url(#vs-pur)"/>
+  <g font-size="9.5" font-weight="700" fill="#3a1d70">
+    <text x="252" y="92">1. look in local</text>
+    <text x="252" y="106">2. not there? look</text>
+    <text x="252" y="119">    in global</text>
+  </g>
+  <!-- outside code cannot see locals -->
+  <path d="M60 206V170" fill="none" stroke="#9a3412" stroke-width="2" marker-end="url(#vs-rust)"/>
+  <path d="M53 181L67 195M67 181L53 195" stroke="#9a3412" stroke-width="2.5"/>
+  <text class="mono" x="22" y="222" font-size="11" font-weight="600" fill="#1a1209">print(timeout)</text>
+  <text x="140" y="196" font-size="9.5" font-weight="700" fill="#9a3412">NameError: locals are gone</text>
+  <text x="140" y="209" font-size="9.5" font-weight="600" fill="#5c4a30">once connect() returns</text>
+</svg>

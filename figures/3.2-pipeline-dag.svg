@@ -1,0 +1,56 @@
+<svg viewBox="0 0 760 252" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pipeline jobs arranged in four stage columns, with needs arrows forming a directed acyclic graph and a dashed on-failure arrow to a rollback job">
+<defs>
+<marker id="dag-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1a1209"/></marker>
+<marker id="dag-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9a3412"/></marker>
+</defs>
+<g font-size="10" font-weight="800" fill="#6d28d9" text-anchor="middle" letter-spacing="0.6">
+<text x="95" y="22">STAGE: LINT</text>
+<text x="285" y="22">STAGE: TEST</text>
+<text x="475" y="22">STAGE: BUILD</text>
+<text x="665" y="22">STAGE: DEPLOY</text>
+</g>
+<g stroke="#d8d2c8" stroke-width="1.5" stroke-dasharray="4 4">
+<path d="M190 30V222"/><path d="M380 30V222"/><path d="M570 30V222"/>
+</g>
+<g stroke="#1a1209" stroke-width="2">
+<rect x="22.5" y="110.5" width="150" height="46" rx="7" fill="#1a1209"/><rect x="20" y="108" width="150" height="46" rx="7" fill="#fff"/>
+<rect x="22.5" y="178.5" width="150" height="46" rx="7" fill="#1a1209"/><rect x="20" y="176" width="150" height="46" rx="7" fill="#fff"/>
+<rect x="212.5" y="42.5" width="150" height="46" rx="7" fill="#1a1209"/><rect x="210" y="40" width="150" height="46" rx="7" fill="#fffae0"/>
+<rect x="212.5" y="178.5" width="150" height="46" rx="7" fill="#1a1209"/><rect x="210" y="176" width="150" height="46" rx="7" fill="#fff"/>
+<rect x="402.5" y="110.5" width="150" height="46" rx="7" fill="#1a1209"/><rect x="400" y="108" width="150" height="46" rx="7" fill="#fff"/>
+<rect x="592.5" y="110.5" width="150" height="46" rx="7" fill="#1a1209"/><rect x="590" y="108" width="150" height="46" rx="7" fill="#6d28d9"/>
+<rect x="592.5" y="42.5" width="150" height="46" rx="7" fill="#1a1209"/><rect x="590" y="40" width="150" height="46" rx="7" fill="#fff" stroke="#9a3412"/>
+</g>
+<g text-anchor="middle">
+<text x="95" y="128" class="mono" font-size="12" font-weight="700" fill="#1a1209">lint-yaml</text>
+<text x="95" y="143" font-size="9" font-weight="600" fill="#5c4a30">no needs</text>
+<text x="95" y="196" class="mono" font-size="12" font-weight="700" fill="#1a1209">lint-python</text>
+<text x="95" y="211" font-size="9" font-weight="600" fill="#5c4a30">no needs</text>
+<text x="285" y="60" class="mono" font-size="12" font-weight="700" fill="#1a1209">smoke-test</text>
+<text x="285" y="75" class="mono" font-size="9" font-weight="600" fill="#5c4a30">allow_failure: true</text>
+<text x="285" y="196" class="mono" font-size="12" font-weight="700" fill="#1a1209">unit-tests</text>
+<text x="285" y="211" font-size="9" font-weight="600" fill="#5c4a30">slowest job: 3 s</text>
+<text x="475" y="128" class="mono" font-size="12" font-weight="700" fill="#1a1209">render-configs</text>
+<text x="475" y="143" font-size="9" font-weight="600" fill="#5c4a30">starts after lint-yaml</text>
+<text x="665" y="128" class="mono" font-size="12" font-weight="700" fill="#fff">deploy-staging</text>
+<text x="665" y="143" font-size="9" font-weight="600" fill="#efe6ff">rules: main only</text>
+<text x="665" y="60" class="mono" font-size="12" font-weight="700" fill="#9a3412">rollback</text>
+<text x="665" y="75" class="mono" font-size="9" font-weight="600" fill="#9a3412">when: on_failure</text>
+<text x="475" y="180" font-size="9" font-weight="600" fill="#5c4a30">does not wait for unit-tests</text>
+</g>
+<g fill="none" stroke="#1a1209" stroke-width="2" marker-end="url(#dag-a)">
+<path d="M170 122H184V63H207"/>
+<path d="M170 136H397"/>
+<path d="M170 199H207"/>
+<path d="M360 199H578V144H587"/>
+<path d="M550 122H587"/>
+</g>
+<path d="M665 107V89" fill="none" stroke="#9a3412" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#dag-r)"/>
+<text x="672" y="102" font-size="9" font-weight="700" fill="#9a3412">if deploy fails</text>
+<g font-size="9.5" font-weight="600" fill="#5c4a30">
+<path d="M20 241H44" stroke="#1a1209" stroke-width="2" marker-end="url(#dag-a)"/>
+<text x="52" y="244"><tspan class="mono" fill="#1a1209">needs</tspan>: the job starts when the job it points from passes</text>
+<path d="M430 241H454" stroke="#9a3412" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#dag-r)"/>
+<text x="462" y="244">runs only when the job it needs fails</text>
+</g>
+</svg>
