@@ -124,7 +124,7 @@ async function loadTopic(rel) {
 
 const LOGO = `<svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#6d28d9"/><path d="M19 14h26v10H29v8h14v10H29v18H19V14z" fill="#ebe9e6"/><rect x="40" y="44" width="8" height="8" rx="1.5" fill="#ffd60a"/></svg>`;
 
-async function cover() {
+async function cover(vol) {
   const art = await readFile(path.join(ROOT, 'figures', 'cover-art.svg'), 'utf8');
   return `
 <section class="cover">
@@ -132,17 +132,17 @@ async function cover() {
   <div class="brandbar"><span class="wordmark">${LOGO}vfrazier.app</span><span class="pill">Open Course Notes</span></div>
   <div class="eyebrow">CompTIA Expansion Series &middot; Exam AT0-001 V1</div>
   <h1><span class="line"><span class="hl">AutoOps+</span></span> <span class="line">Course Notes</span></h1>
-  <p class="sub">Automation coding, system configuration, continuous integration, and continuous delivery, one exam objective at a time.</p>
+  <p class="sub">${vol.label ? `<b>${esc(vol.label)}</b><br>` : ''}Automation coding, system configuration, continuous integration, and continuous delivery, one exam objective at a time.</p>
   <div class="stamp">Version<b>${esc(book.version)}</b></div>
   <div class="cover-art">${art}</div>
   <div class="cover-foot"><div><div class="who">Dr. Frazier A. Smith</div>${esc(book.affiliation)}</div><div class="site">${esc(book.site)}</div></div>
 </section>`;
 }
 
-function legal() {
+function legal(vol) {
   return `
 <section class="front legal">
-  <div class="title">${esc(book.title)}</div>
+  <div class="title">${esc(book.title)}${vol.label ? `: ${esc(vol.label)}` : ''}</div>
   <p>Written by ${esc(book.author)}<br>${esc(book.affiliation)}, Charlotte, North Carolina<br>https://${esc(book.site)}</p>
   <p>Version ${esc(book.version)}, ${esc(book.date)}</p>
   <h3>License</h3>
@@ -156,8 +156,8 @@ function legal() {
 </section>`;
 }
 
-function contents(topics, pages) {
-  const rows = book.domains.map((d) => {
+function contents(topics, pages, vol) {
+  const rows = volumeDomains(vol).map((d) => {
     const domainTopics = topics.filter((t) => t.domain === d);
     const dPage = pages[`d-${d.num}`];
     const items = d.objectives.flatMap((o) => {
@@ -189,7 +189,7 @@ function intro() {
   <h3>Reading the page</h3>
   <p><mark>Highlighted terms</mark> are the vocabulary the exam expects you to recognize on sight. If a highlighted term is unfamiliar a week before your exam, go back to that page.</p>
   <p><b>On the exam</b> boxes describe how a topic tends to show up in a question: the scenario wording, the distractor answers, and the distinction being tested.</p>
-  <p><b>Try it</b> boxes are short exercises you can run on any machine with Git installed. Do them. AutoOps+ is a hands-on exam and reading about a command is not the same as running it.</p>
+  <p><b>Try it</b> boxes are short exercises you can run on your own machine or in a lab VM with the tools the box names. Do them. AutoOps+ is a hands-on exam, and reading about a command is not the same as running it.</p>
   <h3>Every command was run</h3>
   <p>Each command and code sample in these notes is executed by a test script in the source repository before a new version is published. If a tool changes its behavior, the build fails and the notes get fixed.</p>
 </section>`;
@@ -217,7 +217,12 @@ function topicSection(t) {
 </section>`;
 }
 
-async function html(topics, pages = {}) {
+// A volume restricted to some domains lists only those in its contents.
+function volumeDomains(vol) {
+  return vol.domains ? book.domains.filter((d) => vol.domains.includes(d.num)) : book.domains;
+}
+
+async function html(topics, vol, pages = {}) {
   const body = [];
   for (const d of book.domains) {
     const ts = topics.filter((t) => t.domain === d);
@@ -225,11 +230,11 @@ async function html(topics, pages = {}) {
     body.push(divider(d, topics), ...ts.map(topicSection));
   }
   return `<!doctype html><html lang="en"><head><meta charset="utf-8">
-<title>${esc(book.title)}</title>
+<title>${esc(book.title)}${vol.label ? `: ${esc(vol.label)}` : ''}</title>
 <meta name="author" content="${esc(book.author)}">
 <link rel="stylesheet" href="../styles/notes.css">
 </head><body>
-${await cover()}${legal()}${contents(topics, pages)}${intro()}
+${await cover(vol)}${legal(vol)}${contents(topics, pages, vol)}${intro()}
 ${body.join('\n')}
 </body></html>`;
 }
@@ -329,13 +334,15 @@ try {
   for (const name of wanted) {
     const vol = book.volumes[name];
     if (!vol) throw new Error(`No volume "${name}" in book.json`);
+    // A volume lists its own topics, or takes the master list filtered to its domains.
+    const rels = vol.topics ?? book.volumes.master.topics.filter((rel) => vol.domains.some((n) => rel.startsWith(`domain-${n[0]}/`)));
     const topics = [];
-    for (const rel of vol.topics) topics.push(await loadTopic(rel));
+    for (const rel of rels) topics.push(await loadTopic(rel));
     const htmlPath = path.join(ROOT, 'dist', `${vol.file}.html`);
     const pdfPath = path.join(ROOT, 'dist', `${vol.file}.pdf`);
-    await render(browser, await html(topics), htmlPath, pdfPath);
+    await render(browser, await html(topics, vol), htmlPath, pdfPath);
     const { pages } = await readPages(pdfPath, topics);
-    await render(browser, await html(topics, pages), htmlPath, pdfPath);
+    await render(browser, await html(topics, vol, pages), htmlPath, pdfPath);
     const check = await readPages(pdfPath, topics);
     for (const k of Object.keys(pages)) if (pages[k] !== check.pages[k]) throw new Error(`Page drift on ${k}; rerun`);
     const stamped = await stampContinuations(browser, pdfPath, htmlPath, topics, check.starts, check.atTop);
