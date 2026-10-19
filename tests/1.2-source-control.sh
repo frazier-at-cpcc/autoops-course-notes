@@ -91,10 +91,12 @@ fi
 HOOK
 cat > .git/hooks/commit-msg <<'HOOK'
 #!/bin/sh
-# Enforce Conventional Commits: type(optional scope): summary
-pattern='^(feat|fix|docs|chore|refactor|test|ci)(\([a-z0-9-]+\))?!?: .{1,72}$'
-if ! head -1 "$1" | grep -Eq "$pattern"; then
-  echo "commit-msg: use 'type(scope): summary', e.g. 'fix(dns): correct TTL'" >&2
+# Enforce Conventional Commits: type(optional scope): summary,
+# with the whole first line at 72 characters or fewer
+subject=$(head -1 "$1")
+pattern='^(feat|fix|docs|chore|refactor|test|ci)(\([a-z0-9-]+\))?!?: .+$'
+if ! printf '%s\n' "$subject" | grep -Eq "$pattern" || [ ${#subject} -gt 72 ]; then
+  echo "commit-msg: use 'type(scope): summary'" >&2
   exit 1
 fi
 HOOK
@@ -104,6 +106,9 @@ if git commit -qm "chore: add creds" 2>/dev/null; then echo "secret hook FAILED 
 git rm -q --cached creds.ini && rm creds.ini
 echo 'ok' > notes.txt && git add notes.txt
 if git commit -qm "updated stuff" 2>/dev/null; then echo "msg hook FAILED to block"; exit 1; fi
+# Subject over 72 characters overall is rejected even though the summary alone is shorter
+long="feat(ntp): $(printf 'x%.0s' $(seq 1 70))"
+if git commit -qm "$long" 2>/dev/null; then echo "msg hook FAILED to block long subject"; exit 1; fi
 git commit -qm "docs: add operator notes"
 git commit --no-verify -q --allow-empty -m "bypass" && git reset -q --soft HEAD~1
 
