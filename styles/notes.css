@@ -129,10 +129,10 @@ strong { font-weight: 700; }
 
 .brandbar { position: relative; display: flex; align-items: center; justify-content: space-between; }
 .wordmark {
-  display: inline-flex; align-items: center; gap: 8pt;
-  background: var(--ink); color: var(--page);
-  padding: 5pt 11pt 5pt 6pt; border-radius: var(--radius-sm);
-  font-weight: 800; font-size: 12pt; letter-spacing: -0.02em;
+  color: inherit; font-weight: 700;
+  background: var(--highlight);
+  padding: 0.6pt 2.4pt; margin: 0 -0.4pt; border-radius: 2px;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
 }
 .wordmark svg { width: 18pt; height: 18pt; display: block; }
 .pill {
