@@ -1,0 +1,60 @@
+<svg viewBox="0 0 760 262" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mutable servers are changed in place and drift over time; immutable servers are replaced by new ones built from a versioned image">
+  <defs>
+    <marker id="mi-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1a1209"/></marker>
+    <marker id="mi-rust" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#9a3412"/></marker>
+  </defs>
+
+  <!-- Row 1: mutable -->
+  <text x="20" y="18" font-size="11" font-weight="800" letter-spacing="1.4" fill="#5c4a30">MUTABLE: CHANGE THE SAME SERVER IN PLACE</text>
+  <g text-anchor="middle" font-weight="800">
+    <rect x="23" y="33" width="150" height="54" rx="7" fill="#1a1209"/><rect x="20" y="30" width="150" height="54" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+    <text x="95" y="52" font-size="13" fill="#1a1209">web01</text>
+    <text x="95" y="70" font-size="10" font-weight="600" fill="#5c4a30">built from a script</text>
+
+    <rect x="218" y="33" width="150" height="54" rx="7" fill="#1a1209"/><rect x="215" y="30" width="150" height="54" rx="7" fill="#fffae0" stroke="#1a1209" stroke-width="2"/>
+    <text x="290" y="52" font-size="13" fill="#1a1209">web01</text>
+    <text x="290" y="70" font-size="10" font-weight="600" fill="#5c4a30">patched over SSH</text>
+
+    <rect x="413" y="33" width="150" height="54" rx="7" fill="#1a1209"/><rect x="410" y="30" width="150" height="54" rx="7" fill="#ffd60a" stroke="#1a1209" stroke-width="2"/>
+    <text x="485" y="52" font-size="13" fill="#1a1209">web01</text>
+    <text x="485" y="70" font-size="10" font-weight="600" fill="#1a1209">hand-edited at 2 a.m.</text>
+
+    <rect x="608" y="33" width="132" height="54" rx="7" fill="#1a1209"/><rect x="605" y="30" width="132" height="54" rx="7" fill="#fff" stroke="#9a3412" stroke-width="2" stroke-dasharray="5 3"/>
+    <text x="671" y="52" font-size="13" fill="#9a3412">web01 today</text>
+    <text x="671" y="70" font-size="10" font-weight="600" fill="#9a3412">drifted; not in code</text>
+  </g>
+  <g stroke="#1a1209" stroke-width="2" fill="none" marker-end="url(#mi-ink)">
+    <path d="M172 57H211"/>
+    <path d="M367 57H406"/>
+    <path d="M562 57H601"/>
+  </g>
+
+  <path d="M20 112H740" stroke="#d8d2c8" stroke-width="1.5"/>
+
+  <!-- Row 2: immutable -->
+  <text x="20" y="138" font-size="11" font-weight="800" letter-spacing="1.4" fill="#6d28d9">IMMUTABLE: NEVER EDIT, REPLACE FROM A NEW IMAGE</text>
+  <g text-anchor="middle" font-weight="800">
+    <rect x="23" y="153" width="150" height="54" rx="7" fill="#1a1209"/><rect x="20" y="150" width="150" height="54" rx="7" fill="#efe6ff" stroke="#1a1209" stroke-width="2"/>
+    <text x="95" y="172" font-size="13" fill="#1a1209">Image v1</text>
+    <text x="95" y="190" font-size="10" font-weight="600" fill="#5c4a30">built from code, tagged</text>
+
+    <rect x="218" y="153" width="150" height="54" rx="7" fill="#1a1209"/><rect x="215" y="150" width="150" height="54" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+    <text x="290" y="172" font-size="13" fill="#1a1209">Server A</text>
+    <text x="290" y="190" font-size="10" font-weight="600" fill="#5c4a30">runs v1, never edited</text>
+
+    <rect x="413" y="153" width="150" height="54" rx="7" fill="#1a1209"/><rect x="410" y="150" width="150" height="54" rx="7" fill="#efe6ff" stroke="#1a1209" stroke-width="2"/>
+    <text x="485" y="172" font-size="13" fill="#1a1209">Image v2</text>
+    <text x="485" y="190" font-size="10" font-weight="600" fill="#5c4a30">change made in code</text>
+
+    <rect x="608" y="153" width="132" height="54" rx="7" fill="#1a1209"/><rect x="605" y="150" width="132" height="54" rx="7" fill="#6d28d9" stroke="#1a1209" stroke-width="2"/>
+    <text x="671" y="172" font-size="13" fill="#fff">Server B</text>
+    <text x="671" y="190" font-size="10" font-weight="600" fill="#efe6ff">runs v2</text>
+  </g>
+  <g stroke="#1a1209" stroke-width="2" fill="none" marker-end="url(#mi-ink)">
+    <path d="M172 177H211"/>
+    <path d="M562 177H601"/>
+  </g>
+  <!-- replace: B takes over, A destroyed -->
+  <path d="M671 210C671 246 290 246 290 214" stroke="#9a3412" stroke-width="2" fill="none" stroke-dasharray="6 4" marker-end="url(#mi-rust)"/>
+  <text x="480" y="256" text-anchor="middle" font-size="11" font-weight="700" fill="#9a3412">traffic moves to B, then Server A is destroyed</text>
+</svg>
