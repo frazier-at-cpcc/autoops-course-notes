@@ -13,7 +13,13 @@ set -euo pipefail
 trap 'echo "FAILED at ${BASH_SOURCE[0]}:$LINENO: $BASH_COMMAND" >&2' ERR
 WORK=$(mktemp -d)
 JENKINS_IMAGE=mirror.gcr.io/jenkins/jenkins:lts-jdk17
-cleanup() { docker rm -f ao-g-jenkins >/dev/null 2>&1 || true; rm -rf "$WORK"; }
+# chown needs root; CI runners are a normal user with passwordless sudo.
+SUDO=""; [ "$(id -u)" -eq 0 ] || SUDO="sudo"
+cleanup() {
+  docker rm -f ao-g-jenkins >/dev/null 2>&1 || true
+  [ -d "$WORK/repo" ] && $SUDO chown -R "$(id -u):$(id -g)" "$WORK/repo" 2>/dev/null
+  rm -rf "$WORK"
+}
 trap cleanup EXIT
 cd "$WORK"
 export GIT_CONFIG_GLOBAL="$WORK/gitconfig"
@@ -111,7 +117,7 @@ awk 'length > 52 { print "line too long: " $0; exit 1 }' triggers.Jenkinsfile
 # Broken copy: the steps block was left out of the Test stage
 sed '/stage(.Test.)/,/^    }$/{/steps {/d;/^      }$/d}' repo/Jenkinsfile > broken.Jenkinsfile
 chmod -R a+rX "$WORK"
-chown -R 1000:1000 repo   # the jenkins user (uid 1000) reads the repo
+$SUDO chown -R 1000:1000 repo   # the jenkins user (uid 1000) reads the repo
 
 say "start Jenkins"
 docker run -d --name ao-g-jenkins -p 127.0.0.1:18410:8080 \
