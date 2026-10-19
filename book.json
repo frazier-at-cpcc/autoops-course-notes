@@ -61,6 +61,14 @@
         "domain-1/1.2-branching-strategies.md",
         "domain-1/1.2-commit-life-cycle.md"
       ]
+    },
+    "preview-obj-3.1": {
+      "file": "preview-obj-3.1",
+      "topics": [
+        "domain-3/3.1-secrets-management.md",
+        "domain-3/3.1-artifact-management.md",
+        "domain-3/3.1-task-runners.md"
+      ]
     }
   }
 }
