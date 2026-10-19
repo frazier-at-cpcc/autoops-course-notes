@@ -61,6 +61,14 @@
         "domain-1/1.2-branching-strategies.md",
         "domain-1/1.2-commit-life-cycle.md"
       ]
+    },
+    "preview-obj-2.1": {
+      "file": "preview-obj-2.1",
+      "topics": [
+        "domain-2/2.1-drift-and-state.md",
+        "domain-2/2.1-workload-configuration.md",
+        "domain-2/2.1-virtual-network-infrastructure.md"
+      ]
     }
   }
 }
