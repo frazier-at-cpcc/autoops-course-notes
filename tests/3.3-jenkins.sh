@@ -10,6 +10,7 @@
 #   (with dependencies) into the ao-g-jenkins-plugins volume on first run.
 # Uses port 127.0.0.1:18410 and container name ao-g-jenkins.
 set -euo pipefail
+trap 'echo "FAILED at ${BASH_SOURCE[0]}:$LINENO: $BASH_COMMAND" >&2' ERR
 WORK=$(mktemp -d)
 JENKINS_IMAGE=mirror.gcr.io/jenkins/jenkins:lts-jdk17
 cleanup() { docker rm -f ao-g-jenkins >/dev/null 2>&1 || true; rm -rf "$WORK"; }
@@ -35,7 +36,8 @@ if ! docker run --rm -v ao-g-jenkins-plugins:/p --entrypoint test "$JENKINS_IMAG
   docker run --rm -u root --name ao-g-jenkins --network host "${VOLS[@]}" \
     -v ao-g-jenkins-plugins:/plugins -e JAVA_TOOL_OPTIONS="${JOPTS[*]}" \
     --entrypoint jenkins-plugin-cli "$JENKINS_IMAGE" --plugin-download-directory /plugins \
-    --plugins workflow-aggregator pipeline-model-definition git >/dev/null 2>&1
+    --plugins workflow-aggregator pipeline-model-definition git >"$WORK/plugins.log" 2>&1 \
+    || { tail -40 "$WORK/plugins.log"; exit 1; }
 fi
 
 say "Git repository with the Jenkinsfile, branch main and tag v1.4.0"

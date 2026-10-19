@@ -8,6 +8,7 @@
 #   gitleaks 8.30.1 is downloaded from its GitHub release if not on PATH.
 #   The old alpine:3.14.0 image is pulled from mirror.gcr.io.
 set -euo pipefail
+trap 'echo "FAILED at ${BASH_SOURCE[0]}:$LINENO: $BASH_COMMAND" >&2' ERR
 WORK=$(mktemp -d)
 trap 'rm -rf "$WORK"; docker rm -f ao-g-trivy >/dev/null 2>&1 || true' EXIT
 cd "$WORK"
