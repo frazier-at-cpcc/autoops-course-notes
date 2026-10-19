@@ -12,7 +12,7 @@ contents, domain dividers, figures, and PDF bookmarks.
 ## Status
 
 Version 1.0.0 covers every objective in all four exam domains: 13 objectives in
-38 topics, about 100 pages. The build produces the complete book and one PDF
+35 topics, about 100 pages. The build produces the complete book and one PDF
 per domain:
 
 | File | Contents |
