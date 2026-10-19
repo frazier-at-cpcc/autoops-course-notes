@@ -1,0 +1,52 @@
+<svg viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A log line split into time, level, host, and msg by named capture groups, with the regex piece that matches each field">
+  <text x="30" y="14" font-size="10" font-weight="800" letter-spacing="1.6" fill="#5c4a30">LOG LINE</text>
+  <!-- field boxes -->
+  <g>
+    <rect x="32.5" y="26.5" width="100" height="36" rx="7" fill="#1a1209"/><rect x="30" y="24" width="100" height="36" rx="7" fill="#fffae0" stroke="#1a1209" stroke-width="2"/>
+    <rect x="162.5" y="26.5" width="90" height="36" rx="7" fill="#1a1209"/><rect x="160" y="24" width="90" height="36" rx="7" fill="#fffae0" stroke="#1a1209" stroke-width="2"/>
+    <rect x="282.5" y="26.5" width="120" height="36" rx="7" fill="#1a1209"/><rect x="280" y="24" width="120" height="36" rx="7" fill="#fffae0" stroke="#1a1209" stroke-width="2"/>
+    <rect x="432.5" y="26.5" width="300" height="36" rx="7" fill="#1a1209"/><rect x="430" y="24" width="300" height="36" rx="7" fill="#fffae0" stroke="#1a1209" stroke-width="2"/>
+  </g>
+  <g class="mono" font-size="14" font-weight="600" fill="#1a1209" text-anchor="middle">
+    <text x="80" y="47">08:14:09</text>
+    <text x="205" y="47">ERROR</text>
+    <text x="340" y="47">edge-rtr1</text>
+    <text x="580" y="47">auth failed from 10.0.4.17</text>
+  </g>
+  <!-- brackets -->
+  <g stroke="#6d28d9" stroke-width="2" fill="none">
+    <path d="M34 68V74H126V68"/>
+    <path d="M164 68V74H246V68"/>
+    <path d="M284 68V74H396V68"/>
+    <path d="M434 68V74H726V68"/>
+  </g>
+  <!-- group names -->
+  <g class="mono" font-size="12" font-weight="700" fill="#6d28d9" text-anchor="middle">
+    <text x="80" y="92">(?P&lt;time&gt;</text>
+    <text x="205" y="92">(?P&lt;level&gt;</text>
+    <text x="340" y="92">(?P&lt;host&gt;</text>
+    <text x="580" y="92">(?P&lt;msg&gt;</text>
+  </g>
+  <!-- pattern pieces -->
+  <g class="mono" font-size="12" font-weight="600" fill="#1a1209" text-anchor="middle">
+    <text x="80" y="112">\d{2}:\d{2}:\d{2})</text>
+    <text x="205" y="112">[A-Z]+)</text>
+    <text x="340" y="112">[\w-]+)</text>
+    <text x="580" y="112">.*)</text>
+  </g>
+  <!-- anchors and literal spaces -->
+  <g class="mono" font-size="13" font-weight="700" fill="#9a3412" text-anchor="middle">
+    <text x="16" y="112">^</text>
+    <text x="746" y="112">$</text>
+  </g>
+  <g stroke="#9a3412" stroke-width="2" fill="none">
+    <path d="M140 104V109H150V104"/>
+    <path d="M260 104V109H270V104"/>
+    <path d="M410 104V109H420V104"/>
+  </g>
+  <text x="275" y="138" font-size="9.5" font-weight="700" fill="#9a3412" text-anchor="middle">literal space between fields</text>
+  <path d="M215 133L150 116" stroke="#9a3412" stroke-width="1.2" fill="none"/>
+  <path d="M335 133L410 116" stroke="#9a3412" stroke-width="1.2" fill="none"/>
+  <text class="mono" x="430" y="140" font-size="11" font-weight="600" fill="#3a1d70">m["host"] is "edge-rtr1"</text>
+  <text class="mono" x="430" y="155" font-size="11" font-weight="600" fill="#3a1d70">m["level"] is "ERROR"</text>
+</svg>

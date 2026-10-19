@@ -1,0 +1,29 @@
+<svg viewBox="0 0 360 236" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dockerfile layers on a rebuild after editing render.py: the first four layers come from cache and only the last COPY runs">
+  <defs><marker id="dl-rust" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9a3412"/></marker></defs>
+  <text x="8" y="13" font-size="9.5" font-weight="800" letter-spacing="1.4" fill="#5c4a30">REBUILD AFTER EDITING render.py</text>
+  <rect x="10.5" y="26.5" width="262" height="28" rx="7" fill="#1a1209"/><rect x="8" y="24" width="262" height="28" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+  <text class="mono" x="18" y="42" font-size="10.5" font-weight="600" fill="#1a1209">FROM python:3.13-slim</text>
+  <rect x="282" y="28" width="70" height="20" rx="7" fill="#efe6ff" stroke="#1a1209" stroke-width="1.5"/>
+  <text x="317" y="42" text-anchor="middle" font-size="9.5" font-weight="800" letter-spacing="1.2" fill="#3a1d70">CACHED</text>
+  <rect x="10.5" y="61.5" width="262" height="28" rx="7" fill="#1a1209"/><rect x="8" y="59" width="262" height="28" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+  <text class="mono" x="18" y="77" font-size="10.5" font-weight="600" fill="#1a1209">WORKDIR /app</text>
+  <rect x="282" y="63" width="70" height="20" rx="7" fill="#efe6ff" stroke="#1a1209" stroke-width="1.5"/>
+  <text x="317" y="77" text-anchor="middle" font-size="9.5" font-weight="800" letter-spacing="1.2" fill="#3a1d70">CACHED</text>
+  <rect x="10.5" y="96.5" width="262" height="28" rx="7" fill="#1a1209"/><rect x="8" y="94" width="262" height="28" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+  <text class="mono" x="18" y="112" font-size="10.5" font-weight="600" fill="#1a1209">COPY requirements.txt .</text>
+  <rect x="282" y="98" width="70" height="20" rx="7" fill="#efe6ff" stroke="#1a1209" stroke-width="1.5"/>
+  <text x="317" y="112" text-anchor="middle" font-size="9.5" font-weight="800" letter-spacing="1.2" fill="#3a1d70">CACHED</text>
+  <rect x="10.5" y="131.5" width="262" height="28" rx="7" fill="#1a1209"/><rect x="8" y="129" width="262" height="28" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+  <text class="mono" x="18" y="147" font-size="10.5" font-weight="600" fill="#1a1209">RUN pip install ...</text>
+  <rect x="282" y="133" width="70" height="20" rx="7" fill="#efe6ff" stroke="#1a1209" stroke-width="1.5"/>
+  <text x="317" y="147" text-anchor="middle" font-size="9.5" font-weight="800" letter-spacing="1.2" fill="#3a1d70">CACHED</text>
+  <rect x="10.5" y="166.5" width="262" height="28" rx="7" fill="#1a1209"/><rect x="8" y="164" width="262" height="28" rx="7" fill="#fffae0" stroke="#1a1209" stroke-width="2"/>
+  <text class="mono" x="18" y="182" font-size="10.5" font-weight="600" fill="#1a1209">COPY render.py switch.yaml ./</text>
+  <rect x="282" y="168" width="70" height="20" rx="7" fill="#ffd60a" stroke="#1a1209" stroke-width="1.5"/>
+  <text x="317" y="182" text-anchor="middle" font-size="9.5" font-weight="800" letter-spacing="1.2" fill="#1a1209">RUNS</text>
+  <rect x="8" y="199" width="262" height="28" rx="7" fill="none" stroke="#5c4a30" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text class="mono" x="18" y="217" font-size="10.5" font-weight="600" fill="#5c4a30">ENTRYPOINT, CMD</text>
+  <text x="317" y="212" text-anchor="middle" font-size="9" font-weight="700" fill="#5c4a30">settings,</text>
+  <text x="317" y="223" text-anchor="middle" font-size="9" font-weight="700" fill="#5c4a30">no layer</text>
+  <text x="8" y="245" font-size="9.5" font-weight="700" fill="#9a3412">A change rebuilds its own layer and every layer after it.</text>
+</svg>
