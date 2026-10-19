@@ -265,8 +265,12 @@ strong { font-weight: 700; }
   text-transform: uppercase; color: var(--accent-soft); text-align: right;
 }
 
-.cols { columns: 2; column-gap: var(--col-gap); column-fill: auto; orphans: 3; widows: 3; }
+.cols { columns: 2; column-gap: var(--col-gap); column-fill: balance; orphans: 3; widows: 3; }
 .cols > :first-child { margin-top: 0; }
+/* An empty full-width element at the end of every topic. Chromium balances the
+   columns that precede a spanner, so a topic's last page splits its remaining
+   content evenly instead of stacking it all in the left column. */
+.col-end { column-span: all; height: 0; margin: 0; }
 
 .cols h3 {
   font-size: 10.6pt; font-weight: 800; letter-spacing: -0.012em;
@@ -279,18 +283,15 @@ strong { font-weight: 700; }
 }
 .cols p { margin: 0 0 4pt; }
 
-.cols ul, .cols ol { margin: 0 0 3pt; padding-left: 10.5pt; }
-.cols ul { list-style: none; }
-.cols ul > li { position: relative; margin: 0 0 1.6pt; }
-.cols ul > li::before {
-  content: ""; position: absolute; left: -9pt; top: 0.52em;
-  width: 3.8pt; height: 3.8pt; background: var(--accent); border-radius: 0.8pt;
-}
-.cols ul ul { margin: 0.5pt 0 1.5pt; padding-left: 10pt; color: var(--ink-2); }
-.cols ul ul > li { margin: 0 0 0.6pt; }
-.cols ul ul > li::before {
-  width: 5pt; height: 1.3pt; top: 0.66em; left: -9.5pt; background: var(--muted); border-radius: 0;
-}
+.cols ul, .cols ol { margin: 0 0 3pt; padding-left: 11pt; }
+/* Bullets use native ::marker, not absolutely positioned pseudo-elements:
+   Chromium will not balance columns that contain positioned boxes. */
+.cols ul { list-style: square; }
+.cols ul > li { margin: 0 0 1.6pt; padding-left: 0.5pt; }
+.cols ul > li::marker { color: var(--accent); font-size: 1em; }
+.cols ul ul { margin: 0.5pt 0 1.5pt; padding-left: 10pt; color: var(--ink-2); list-style-type: "\2013\00A0\00A0"; }
+.cols ul ul > li { margin: 0 0 0.6pt; padding-left: 0; }
+.cols ul ul > li::marker { color: var(--muted); font-size: 1em; font-weight: 600; }
 .cols li > p { margin: 0; }
 .cols li { break-inside: avoid; }
 

@@ -212,7 +212,7 @@ function topicSection(t) {
   return `
 <section class="topic" id="${t.id}">
   <div class="topic-bar"><h2><span class="obj">${t.objective}</span> ${esc(t.title)}</h2><span class="dom">${t.domain.num} ${esc(t.domain.title)}</span></div>
-  <div class="cols">${t.html}</div>
+  <div class="cols">${t.html}<div class="col-end" aria-hidden="true"></div></div>
 </section>`;
 }
 
