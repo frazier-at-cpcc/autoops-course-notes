@@ -94,15 +94,6 @@
     }
   ],
   "volumes": {
-    "preview-obj-4": {
-      "file": "preview-obj-4",
-      "topics": [
-        "domain-4/4.1-deployment-strategies.md",
-        "domain-4/4.1-testing-and-validation.md",
-        "domain-4/4.2-service-levels.md",
-        "domain-4/4.3-provider-connections.md"
-      ]
-    },
     "master": {
       "file": "autoops-course-notes",
       "topics": [
@@ -132,7 +123,11 @@
         "domain-2/2.4-config-file-syntax.md",
         "domain-3/3.1-secrets-management.md",
         "domain-3/3.1-artifact-management.md",
-        "domain-3/3.1-task-runners.md"
+        "domain-3/3.1-task-runners.md",
+        "domain-4/4.1-deployment-strategies.md",
+        "domain-4/4.1-testing-and-validation.md",
+        "domain-4/4.2-service-levels.md",
+        "domain-4/4.3-provider-connections.md"
       ]
     }
   }

@@ -43,13 +43,16 @@ jobs:
           npm ci
           npx playwright install --with-deps chromium
           sudo apt-get update -qq
-          sudo apt-get install -yqq acl sqlite3 shellcheck wget
-          pip install pre-commit ansible-core pywinrm pika "PyYAML==6.0.3" ruamel.yaml yamllint bcrypt
+          sudo apt-get install -yqq acl sqlite3 shellcheck wget apache2-utils
+          pip install pre-commit ansible-core pywinrm pika "PyYAML==6.0.3" ruamel.yaml yamllint bcrypt boto3 parliament pytest
           npm install -g newman
           curl -sSfL https://github.com/rhysd/actionlint/releases/download/v1.7.3/actionlint_1.7.3_linux_amd64.tar.gz | sudo tar xz -C /usr/local/bin actionlint
           go install github.com/go-task/task/v3/cmd/task@v3.54.0
+          go install github.com/yannh/kubeconform/cmd/kubeconform@v0.6.7
           echo "$HOME/go/bin" >> "$GITHUB_PATH"
           pwsh --version
+          aws --version
+          gcloud --version | head -1
 
       - name: Run every command in the notes
         run: |
