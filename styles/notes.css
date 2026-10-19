@@ -331,8 +331,8 @@ pre {
   white-space: pre-wrap; overflow-wrap: anywhere; break-inside: avoid;
 }
 pre code { background: none; color: var(--ink); padding: 0; font-weight: 400; white-space: inherit; font-size: inherit; }
-/* Tags are cut into the box's top-right corner: they sit flush against the top
-   and right borders and round only the inner corners. */
+/* Tags are cut into a corner of the box: code tags top-right, callout tags
+   top-left. They sit flush against the borders and round only the inner corner. */
 pre[data-label]::before {
   content: attr(data-label);
   display: block; width: max-content;
@@ -362,10 +362,10 @@ pre[data-label]::before {
 }
 .callout .label {
   display: block; width: max-content;
-  margin: -7pt -9pt 4pt auto;              /* cancel the callout's padding */
+  margin: -7pt auto 4pt -9pt;              /* top-left corner; cancel the padding */
   padding: 2.4pt 8pt 2.6pt;
-  border: 0; border-left: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
-  border-radius: 0 8px 0 7px;              /* 8px = box radius minus border */
+  border: 0; border-right: 2px solid var(--ink); border-bottom: 2px solid var(--ink);
+  border-radius: 8px 0 7px 0;              /* 8px = box radius minus border */
   font-size: 6.4pt; font-weight: 800; letter-spacing: .15em; text-transform: uppercase;
 }
 .callout.exam { background: var(--highlight-soft); }
