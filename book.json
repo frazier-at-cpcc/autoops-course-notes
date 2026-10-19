@@ -116,6 +116,14 @@
         "domain-2/2.4-troubleshooting-configuration.md",
         "domain-2/2.4-config-file-syntax.md"
       ]
+    },
+    "preview-obj-2.2": {
+      "file": "preview-obj-2.2",
+      "topics": [
+        "domain-2/2.2-remote-and-local-automation.md",
+        "domain-2/2.2-environments-and-provisioning.md",
+        "domain-2/2.2-event-driven-automation.md"
+      ]
     }
   }
 }

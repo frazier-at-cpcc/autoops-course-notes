@@ -1,0 +1,79 @@
+<svg viewBox="0 0 760 236" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Push provisioning: a control node connects out to each target. Pull provisioning: each node's agent connects to a central source on a schedule.">
+  <defs>
+    <marker id="pp-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1a1209"/></marker>
+    <marker id="pp-pur" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6d28d9"/></marker>
+  </defs>
+  <!-- panel headings -->
+  <path d="M20 26V18H360V26" fill="none" stroke="#5c4a30" stroke-width="1.5"/>
+  <text x="190" y="13" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="1.6" fill="#5c4a30">PUSH</text>
+  <path d="M400 26V18H740V26" fill="none" stroke="#5c4a30" stroke-width="1.5"/>
+  <text x="570" y="13" text-anchor="middle" font-size="10" font-weight="800" letter-spacing="1.6" fill="#5c4a30">PULL</text>
+  <path d="M380 30V222" stroke="#d8d2c8" stroke-width="1.5" stroke-dasharray="4 4"/>
+
+  <g text-anchor="middle">
+    <!-- PUSH: control node -->
+    <rect x="22.5" y="88.5" width="134" height="66" rx="7" fill="#1a1209"/>
+    <rect x="20" y="86" width="134" height="66" rx="7" fill="#6d28d9" stroke="#1a1209" stroke-width="2"/>
+    <text x="87" y="112" font-size="13" font-weight="800" fill="#fff">Control node</text>
+    <text x="87" y="130" font-size="10" font-weight="600" fill="#efe6ff" class="mono">ansible-playbook</text>
+    <!-- PUSH: targets -->
+    <rect x="242.5" y="40.5" width="118" height="40" rx="7" fill="#1a1209"/>
+    <rect x="240" y="38" width="118" height="40" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+    <text x="299" y="62" font-size="11.5" font-weight="700" fill="#1a1209" class="mono">lab-srv1</text>
+    <rect x="242.5" y="101.5" width="118" height="40" rx="7" fill="#1a1209"/>
+    <rect x="240" y="99" width="118" height="40" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+    <text x="299" y="123" font-size="11.5" font-weight="700" fill="#1a1209" class="mono">core-sw1</text>
+    <rect x="242.5" y="162.5" width="118" height="40" rx="7" fill="#1a1209"/>
+    <rect x="240" y="160" width="118" height="40" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+    <text x="299" y="184" font-size="11.5" font-weight="700" fill="#1a1209" class="mono">win-dc1</text>
+
+    <!-- PULL: nodes with agents -->
+    <rect x="402.5" y="40.5" width="128" height="40" rx="7" fill="#1a1209"/>
+    <rect x="400" y="38" width="128" height="40" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+    <text x="464" y="55" font-size="11.5" font-weight="700" fill="#1a1209" class="mono">web-01</text>
+    <text x="464" y="69" font-size="9" font-weight="600" fill="#5c4a30">agent or cron job</text>
+    <rect x="402.5" y="101.5" width="128" height="40" rx="7" fill="#1a1209"/>
+    <rect x="400" y="99" width="128" height="40" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+    <text x="464" y="116" font-size="11.5" font-weight="700" fill="#1a1209" class="mono">web-02</text>
+    <text x="464" y="130" font-size="9" font-weight="600" fill="#5c4a30">agent or cron job</text>
+    <rect x="402.5" y="162.5" width="128" height="40" rx="7" fill="#1a1209"/>
+    <rect x="400" y="160" width="128" height="40" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+    <text x="464" y="177" font-size="11.5" font-weight="700" fill="#1a1209" class="mono">web-03</text>
+    <text x="464" y="191" font-size="9" font-weight="600" fill="#5c4a30">agent or cron job</text>
+    <!-- PULL: source of truth -->
+    <rect x="608.5" y="88.5" width="134" height="66" rx="7" fill="#1a1209"/>
+    <rect x="606" y="86" width="134" height="66" rx="7" fill="#efe6ff" stroke="#1a1209" stroke-width="2"/>
+    <text x="673" y="108" font-size="13" font-weight="800" fill="#1a1209">Git repo or</text>
+    <text x="673" y="124" font-size="13" font-weight="800" fill="#1a1209">config server</text>
+    <text x="673" y="141" font-size="9" font-weight="600" fill="#5c4a30">Puppet, Chef, ansible-pull</text>
+  </g>
+
+  <!-- PUSH arrows: controller to targets -->
+  <g stroke="#1a1209" stroke-width="2" fill="none" marker-end="url(#pp-ink)">
+    <path d="M156 106L234 62"/>
+    <path d="M156 119L234 119"/>
+    <path d="M156 132L234 176"/>
+  </g>
+  <g font-size="9.5" font-weight="700" fill="#1a1209" text-anchor="middle">
+    <text x="183" y="80">SSH</text>
+    <text x="196" y="113">SSH</text>
+    <text x="178" y="168">WinRM</text>
+  </g>
+  <!-- PULL arrows: nodes to source -->
+  <g stroke="#6d28d9" stroke-width="2" fill="none" marker-end="url(#pp-pur)">
+    <path d="M530 62L600 106"/>
+    <path d="M530 119L600 119"/>
+    <path d="M530 176L600 132"/>
+  </g>
+  <g font-size="9.5" font-weight="700" fill="#6d28d9" text-anchor="middle">
+    <text x="574" y="74">fetch</text>
+    <text x="566" y="113">fetch</text>
+    <text x="574" y="174">fetch</text>
+  </g>
+
+  <!-- captions -->
+  <g font-size="10.5" font-weight="600" fill="#5c4a30" text-anchor="middle">
+    <text x="190" y="224">Controller opens every connection, when you run it</text>
+    <text x="570" y="224">Each node opens its own connection, on a timer</text>
+  </g>
+</svg>
