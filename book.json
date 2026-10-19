@@ -4,7 +4,7 @@
   "author": "Frazier A. Smith, Ed.D.",
   "affiliation": "Central Piedmont Community College",
   "site": "vfrazier.app",
-  "version": "0.1.0-pilot",
+  "version": "1.0.0",
   "date": "October 2026",
   "license": "CC BY-NC-SA 4.0",
   "domains": [
@@ -124,19 +124,42 @@
         "domain-3/3.1-secrets-management.md",
         "domain-3/3.1-artifact-management.md",
         "domain-3/3.1-task-runners.md",
+        "domain-3/3.2-pipeline-orchestration.md",
+        "domain-3/3.2-pipeline-enhancements.md",
+        "domain-3/3.3-triggers-and-chatops.md",
+        "domain-3/3.3-pipeline-definitions.md",
         "domain-4/4.1-deployment-strategies.md",
         "domain-4/4.1-testing-and-validation.md",
         "domain-4/4.2-service-levels.md",
         "domain-4/4.3-provider-connections.md"
       ]
     },
-    "preview-obj-3.2-3.3": {
-      "file": "preview-obj-3.2-3.3",
-      "topics": [
-        "domain-3/3.2-pipeline-orchestration.md",
-        "domain-3/3.2-pipeline-enhancements.md",
-        "domain-3/3.3-triggers-and-chatops.md",
-        "domain-3/3.3-pipeline-definitions.md"
+    "domain-1": {
+      "file": "autoops-course-notes-domain-1",
+      "label": "Domain 1.0: Automation Coding Concepts",
+      "domains": [
+        "1.0"
+      ]
+    },
+    "domain-2": {
+      "file": "autoops-course-notes-domain-2",
+      "label": "Domain 2.0: System Configuration",
+      "domains": [
+        "2.0"
+      ]
+    },
+    "domain-3": {
+      "file": "autoops-course-notes-domain-3",
+      "label": "Domain 3.0: Continuous Integration",
+      "domains": [
+        "3.0"
+      ]
+    },
+    "domain-4": {
+      "file": "autoops-course-notes-domain-4",
+      "label": "Domain 4.0: Continuous Delivery",
+      "domains": [
+        "4.0"
       ]
     }
   }
