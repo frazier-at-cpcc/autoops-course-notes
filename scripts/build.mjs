@@ -4,7 +4,7 @@
 // Pipeline: Markdown topics -> one HTML book -> headless Chromium PDF.
 // Two passes: the first render is read back (PDF outline) to learn which page
 // each topic landed on; the second render fills those numbers into the contents.
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { readFile, writeFile, mkdir, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -294,6 +294,9 @@ async function stampContinuations(browser, pdfPath, htmlPath, topics, starts, at
     target.drawPage(embedded[i], { x: 0, y: 0, width, height });
   });
   await writeFile(pdfPath, await main.save());
+  // The overlay is an intermediate file; keep dist/ to the finished PDFs.
+  await rm(overlayPdf, { force: true });
+  await rm(overlayHtml, { force: true });
   return conts.length;
 }
 
