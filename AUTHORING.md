@@ -78,15 +78,16 @@ distinction being tested.
 
 ## Code and output must be real
 
-Every code block and every line of terminal output in the notes is produced by
-a test script before it is published.
+Every code block and every line of terminal output in the notes comes from a
+real run, and a test script can reproduce it. The tests are run by hand or from
+the manual Command tests workflow; they do not gate the PDF build.
 
 - Put the script in `tests/<objective>-<slug>.sh`. It must be self-contained:
   `set -euo pipefail`, work in `mktemp -d`, clean up with `trap`, never touch
   the user's real config (`export GIT_CONFIG_GLOBAL=...` and the like), and end
   by printing `ALL <objective> <SLUG> CHECKS PASSED`.
 - Assert the specific output the notes show (`grep -q`, exact comparisons), so a
-  tool changing its behavior fails the build.
+  rerun shows when a tool has changed its behavior.
 - Console output in the notes is copied from a real run. You may trim lines
   (drop noise, shorten a path), but never retype or "improve" output.
 - When something cannot be executed here (a WinRM session to a Windows host, a

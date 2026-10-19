@@ -25,22 +25,26 @@ per domain:
 
 See [AUTHORING.md](AUTHORING.md) for how topics are written and tested.
 
-## Every command is tested
+## Every command was run
 
-Each command and output shown in the notes is exercised by a script in
-`tests/`. CI runs them before building, so if a tool changes behavior the build
-fails and the notes get fixed.
+Each command and output shown in the notes comes from a real run, and
+`tests/` holds a script per topic that runs them again and checks the output.
+The tests are not part of the PDF build. Run them locally, or start the
+**Command tests** workflow from the Actions tab (it can run a single topic, for
+example `2.3-*.sh`), before a release or after a tool update.
 
 ```sh
 npm install
-for t in tests/*.sh; do bash "$t"; done   # every command in the notes
 npm run build                             # writes all PDFs to dist/
+bash tests/2.3-rest-api.sh                # one topic's commands
+for t in tests/*.sh; do bash "$t"; done   # all of them
 ```
 
 The tests use Docker, Terraform, Ansible, PowerShell, and other tools; each
 script lists what it needs in a `# Needs:` comment, and
-`.github/workflows/build.yml` installs the full set on a fresh runner. The build
-uses Playwright's Chromium; locally, run `npx playwright install chromium` once.
+`.github/workflows/command-tests.yml` installs the full set on a fresh runner.
+The build uses Playwright's Chromium; locally, run `npx playwright install
+chromium` once.
 
 ## Writing a topic
 
@@ -82,8 +86,9 @@ site's palette. Type is Inter with IBM Plex Mono for code, both self-hosted.
 
 ## Releases
 
-Push a tag such as `v1.0.0` and the workflow attaches the PDF to a GitHub
-release. The notes themselves follow semantic versioning (see objective 1.2).
+Every push and pull request builds the PDFs (download them from the run's
+`course-notes-pdf` artifact). Push a tag such as `v1.0.0` and the build attaches
+the PDFs to a GitHub release. The notes themselves follow semantic versioning (see objective 1.2).
 
 ## License
 

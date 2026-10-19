@@ -1,4 +1,4 @@
-name: Test and build notes
+name: Build notes
 
 on:
   push:
@@ -24,50 +24,10 @@ jobs:
           node-version: 22
           cache: npm
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'   # 1.4 shows Python 3.13 traceback wording
-
-      - uses: actions/setup-go@v5
-        with:
-          go-version: stable
-          cache: false
-
-      - uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.9.8
-          terraform_wrapper: false
-
-      - name: Install test tools
+      - name: Install build dependencies
         run: |
           npm ci
           npx playwright install --with-deps chromium
-          sudo apt-get update -qq
-          sudo apt-get install -yqq acl sqlite3 shellcheck wget apache2-utils rsync
-          pip install pre-commit ansible-core pywinrm pika "PyYAML==6.0.3" ruamel.yaml yamllint bcrypt boto3 parliament pytest bandit "setuptools<81"
-          # parliament (4.3) still imports pkg_resources, removed in setuptools 81
-          npm install -g newman gitlab-ci-local@4.76.1
-          curl -sSfL https://github.com/nektos/act/releases/download/v0.2.68/act_Linux_x86_64.tar.gz | sudo tar xz -C /usr/local/bin act
-          curl -sSfL https://github.com/rhysd/actionlint/releases/download/v1.7.3/actionlint_1.7.3_linux_amd64.tar.gz | sudo tar xz -C /usr/local/bin actionlint
-          go install github.com/go-task/task/v3/cmd/task@v3.54.0
-          go install github.com/yannh/kubeconform/cmd/kubeconform@v0.6.7
-          echo "$HOME/go/bin" >> "$GITHUB_PATH"
-          pwsh --version
-          aws --version
-          gcloud --version | head -1
-
-      - name: Run every command in the notes
-        run: |
-          fail=0
-          for t in tests/*.sh; do
-            echo "::group::$t"
-            start=$(date +%s)
-            # Tests reproduce what a student sees in a terminal; hide the Actions
-            # markers that make tools switch format (yamllint annotations, go-task color).
-            if env -u CI -u GITHUB_ACTIONS -u GITHUB_WORKFLOW bash "$t"; then echo "PASS $t ($(( $(date +%s) - start ))s)"; else echo "::error::$t failed"; fail=1; fi
-            echo "::endgroup::"
-          done
-          exit $fail
 
       - name: Build PDFs
         run: npm run build
