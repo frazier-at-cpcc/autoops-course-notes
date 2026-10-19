@@ -1,0 +1,44 @@
+<svg viewBox="0 0 760 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A laptop and a CI runner both run make test, which lints, provisions a database, runs tests, and is followed by make clean">
+<defs><marker id="te" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1a1209"/></marker></defs>
+<g text-anchor="middle">
+<rect x="8.5" y="14.5" width="112" height="46" rx="7" fill="#1a1209"/><rect x="6" y="12" width="112" height="46" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="62" y="31" font-size="11.5" font-weight="800" fill="#1a1209">Your laptop</text>
+<text x="62" y="47" font-size="9.5" font-weight="600" fill="#6d28d9" class="mono">$ make test</text>
+<rect x="8.5" y="84.5" width="112" height="46" rx="7" fill="#1a1209"/><rect x="6" y="82" width="112" height="46" rx="7" fill="#6d28d9" stroke="#1a1209" stroke-width="2"/>
+<text x="62" y="101" font-size="11.5" font-weight="800" fill="#fff">CI runner</text>
+<text x="62" y="117" font-size="9.5" font-weight="600" fill="#efe6ff" class="mono">run: make test</text>
+<rect x="160.5" y="44.5" width="96" height="54" rx="7" fill="#1a1209"/><rect x="158" y="42" width="96" height="54" rx="7" fill="#ffd60a" stroke="#1a1209" stroke-width="2"/>
+<text x="206" y="62" font-size="9" font-weight="700" fill="#5c4a30">ONE ENTRY POINT</text>
+<text x="206" y="79" font-size="12" font-weight="800" fill="#1a1209" class="mono">Makefile</text>
+<rect x="290.5" y="44.5" width="96" height="54" rx="7" fill="#1a1209"/><rect x="288" y="42" width="96" height="54" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="336" y="63" font-size="11.5" font-weight="800" fill="#1a1209">lint</text>
+<text x="336" y="79" font-size="9" font-weight="600" fill="#5c4a30" class="mono">yamllint -s</text>
+<rect x="420.5" y="44.5" width="104" height="54" rx="7" fill="#1a1209"/><rect x="418" y="42" width="104" height="54" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="470" y="63" font-size="11.5" font-weight="800" fill="#1a1209">test-env</text>
+<text x="470" y="79" font-size="9" font-weight="600" fill="#5c4a30" class="mono">compose up --wait</text>
+<rect x="558.5" y="44.5" width="88" height="54" rx="7" fill="#1a1209"/><rect x="556" y="42" width="88" height="54" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="600" y="63" font-size="11.5" font-weight="800" fill="#1a1209">test</text>
+<text x="600" y="79" font-size="9" font-weight="600" fill="#5c4a30">query seeded DB</text>
+<rect x="666.5" y="44.5" width="88" height="54" rx="7" fill="#1a1209"/><rect x="664" y="42" width="88" height="54" rx="7" fill="#efe6ff" stroke="#1a1209" stroke-width="2"/>
+<text x="708" y="63" font-size="11.5" font-weight="800" fill="#1a1209">clean</text>
+<text x="708" y="79" font-size="9" font-weight="600" fill="#5c4a30" class="mono">compose down -v</text>
+</g>
+<g stroke="#1a1209" stroke-width="2" fill="none" marker-end="url(#te)">
+<path d="M118 35H138V62H155"/>
+<path d="M118 105H138V76H155"/>
+<path d="M254 69H285"/>
+<path d="M384 69H415"/>
+<path d="M522 69H553"/>
+<path d="M644 69H661"/>
+</g>
+<path d="M418 104V112H522V104" fill="none" stroke="#1a1209" stroke-width="1.5"/>
+<text x="470" y="125" text-anchor="middle" font-size="9" font-weight="700" fill="#1a1209">throwaway Postgres</text>
+<text x="470" y="137" text-anchor="middle" font-size="9" font-weight="600" fill="#5c4a30">seeded, healthy, then used</text>
+<path d="M664 104V112H752V104" fill="none" stroke="#9a3412" stroke-width="1.5"/>
+<text x="708" y="125" text-anchor="middle" font-size="9" font-weight="700" fill="#9a3412">in CI: if: always()</text>
+<text x="708" y="137" text-anchor="middle" font-size="9" font-weight="600" fill="#5c4a30">runs even after a failure</text>
+<path d="M288 104V112H384V104" fill="none" stroke="#1a1209" stroke-width="1.5"/>
+<text x="336" y="125" text-anchor="middle" font-size="9" font-weight="700" fill="#1a1209">non-zero exit</text>
+<text x="336" y="137" text-anchor="middle" font-size="9" font-weight="600" fill="#5c4a30">stops the chain</text>
+<text x="380" y="162" text-anchor="middle" font-size="9.5" font-weight="800" fill="#1a1209">SAME COMMANDS, SAME ORDER <tspan font-weight="600" fill="#5c4a30">whether a person or the pipeline starts them</tspan></text>
+</svg>
