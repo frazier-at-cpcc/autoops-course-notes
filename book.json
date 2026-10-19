@@ -61,6 +61,16 @@
         "domain-1/1.2-branching-strategies.md",
         "domain-1/1.2-commit-life-cycle.md"
       ]
+    },
+    "preview-obj-1.1": {
+      "file": "preview-obj-1.1",
+      "topics": [
+        "domain-1/1.1-variables-and-functions.md",
+        "domain-1/1.1-data-types.md",
+        "domain-1/1.1-regex-and-logs.md",
+        "domain-1/1.1-command-line-tools.md",
+        "domain-1/1.1-dependency-management.md"
+      ]
     }
   }
 }

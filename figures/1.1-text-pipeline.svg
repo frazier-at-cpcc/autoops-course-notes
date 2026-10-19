@@ -1,0 +1,69 @@
+<svg viewBox="0 0 760 196" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A six-stage text pipeline: auth.log through grep, awk, sort, uniq -c, and sort -rn, showing the data after each stage">
+  <defs><marker id="tp-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1a1209"/></marker></defs>
+  <text x="62.0" y="16" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="1.3" fill="#5c4a30">10 LINES</text>
+  <rect x="8.5" y="30.5" width="112" height="142" rx="7" fill="#1a1209"/><rect x="6" y="28" width="112" height="142" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+  <text class="mono" x="62.0" y="47" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1209">auth.log</text>
+  <text x="62.0" y="61" text-anchor="middle" font-size="9" font-weight="600" fill="#5c4a30">input file</text>
+  <path d="M14 69H110" stroke="#d8d2c8" stroke-width="1.5"/>
+  <text class="mono" x="15" y="85" font-size="8.5" font-weight="500" fill="#1a1209">Failed (7)</text>
+  <text class="mono" x="15" y="97" font-size="8.5" font-weight="500" fill="#1a1209">Accepted (2)</text>
+  <text class="mono" x="15" y="109" font-size="8.5" font-weight="500" fill="#1a1209">Closed (1)</text>
+  <path d="M120 99.0H132" stroke="#1a1209" stroke-width="2" marker-end="url(#tp-ink)"/>
+  <text x="189.0" y="16" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="1.3" fill="#5c4a30">7 LINES</text>
+  <rect x="135.5" y="30.5" width="112" height="142" rx="7" fill="#1a1209"/><rect x="133" y="28" width="112" height="142" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+  <text class="mono" x="189.0" y="47" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1209">grep</text>
+  <text class="mono" x="189.0" y="61" text-anchor="middle" font-size="9" font-weight="600" fill="#5c4a30">'Failed password'</text>
+  <path d="M141 69H237" stroke="#d8d2c8" stroke-width="1.5"/>
+  <text class="mono" x="142" y="85" font-size="8.5" font-weight="500" fill="#1a1209">from 203.0.113.9</text>
+  <text class="mono" x="142" y="97" font-size="8.5" font-weight="500" fill="#1a1209">from 203.0.113.9</text>
+  <text class="mono" x="142" y="109" font-size="8.5" font-weight="500" fill="#1a1209">from 198.51.100.23</text>
+  <text class="mono" x="142" y="121" font-size="8.5" font-weight="500" fill="#1a1209">from 198.51.100.23</text>
+  <text class="mono" x="142" y="133" font-size="8.5" font-weight="500" fill="#1a1209">from 203.0.113.9</text>
+  <text class="mono" x="142" y="145" font-size="8.5" font-weight="500" fill="#1a1209">from 203.0.113.9</text>
+  <text class="mono" x="142" y="157" font-size="8.5" font-weight="500" fill="#1a1209">from 10.0.4.17</text>
+  <path d="M247 99.0H259" stroke="#1a1209" stroke-width="2" marker-end="url(#tp-ink)"/>
+  <text x="316.0" y="16" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="1.3" fill="#5c4a30">7 LINES</text>
+  <rect x="262.5" y="30.5" width="112" height="142" rx="7" fill="#1a1209"/><rect x="260" y="28" width="112" height="142" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+  <text class="mono" x="316.0" y="47" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1209">awk</text>
+  <text class="mono" x="316.0" y="61" text-anchor="middle" font-size="9" font-weight="600" fill="#5c4a30">'{print $(NF-3)}'</text>
+  <path d="M268 69H364" stroke="#d8d2c8" stroke-width="1.5"/>
+  <text class="mono" x="269" y="85" font-size="8.5" font-weight="500" fill="#1a1209">203.0.113.9</text>
+  <text class="mono" x="269" y="97" font-size="8.5" font-weight="500" fill="#1a1209">203.0.113.9</text>
+  <text class="mono" x="269" y="109" font-size="8.5" font-weight="500" fill="#1a1209">198.51.100.23</text>
+  <text class="mono" x="269" y="121" font-size="8.5" font-weight="500" fill="#1a1209">198.51.100.23</text>
+  <text class="mono" x="269" y="133" font-size="8.5" font-weight="500" fill="#1a1209">203.0.113.9</text>
+  <text class="mono" x="269" y="145" font-size="8.5" font-weight="500" fill="#1a1209">203.0.113.9</text>
+  <text class="mono" x="269" y="157" font-size="8.5" font-weight="500" fill="#1a1209">10.0.4.17</text>
+  <path d="M374 99.0H386" stroke="#1a1209" stroke-width="2" marker-end="url(#tp-ink)"/>
+  <text x="443.0" y="16" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="1.3" fill="#5c4a30">7 LINES</text>
+  <rect x="389.5" y="30.5" width="112" height="142" rx="7" fill="#1a1209"/><rect x="387" y="28" width="112" height="142" rx="7" fill="#fffae0" stroke="#1a1209" stroke-width="2"/>
+  <text class="mono" x="443.0" y="47" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1209">sort</text>
+  <text x="443.0" y="61" text-anchor="middle" font-size="9" font-weight="600" fill="#5c4a30">groups duplicates</text>
+  <path d="M395 69H491" stroke="#d8d2c8" stroke-width="1.5"/>
+  <text class="mono" x="396" y="85" font-size="8.5" font-weight="500" fill="#1a1209">10.0.4.17</text>
+  <text class="mono" x="396" y="97" font-size="8.5" font-weight="500" fill="#1a1209">198.51.100.23</text>
+  <text class="mono" x="396" y="109" font-size="8.5" font-weight="500" fill="#1a1209">198.51.100.23</text>
+  <text class="mono" x="396" y="121" font-size="8.5" font-weight="500" fill="#1a1209">203.0.113.9</text>
+  <text class="mono" x="396" y="133" font-size="8.5" font-weight="500" fill="#1a1209">203.0.113.9</text>
+  <text class="mono" x="396" y="145" font-size="8.5" font-weight="500" fill="#1a1209">203.0.113.9</text>
+  <text class="mono" x="396" y="157" font-size="8.5" font-weight="500" fill="#1a1209">203.0.113.9</text>
+  <path d="M501 99.0H513" stroke="#1a1209" stroke-width="2" marker-end="url(#tp-ink)"/>
+  <text x="570.0" y="16" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="1.3" fill="#5c4a30">3 LINES</text>
+  <rect x="516.5" y="30.5" width="112" height="142" rx="7" fill="#1a1209"/><rect x="514" y="28" width="112" height="142" rx="7" fill="#fffae0" stroke="#1a1209" stroke-width="2"/>
+  <text class="mono" x="570.0" y="47" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1209">uniq -c</text>
+  <text x="570.0" y="61" text-anchor="middle" font-size="9" font-weight="600" fill="#5c4a30">counts neighbors</text>
+  <path d="M522 69H618" stroke="#d8d2c8" stroke-width="1.5"/>
+  <text class="mono" x="523" y="85" font-size="8.5" font-weight="500" fill="#1a1209">1 10.0.4.17</text>
+  <text class="mono" x="523" y="97" font-size="8.5" font-weight="500" fill="#1a1209">2 198.51.100.23</text>
+  <text class="mono" x="523" y="109" font-size="8.5" font-weight="500" fill="#1a1209">4 203.0.113.9</text>
+  <path d="M628 99.0H640" stroke="#1a1209" stroke-width="2" marker-end="url(#tp-ink)"/>
+  <text x="697.0" y="16" text-anchor="middle" font-size="9" font-weight="800" letter-spacing="1.3" fill="#5c4a30">3 LINES</text>
+  <rect x="643.5" y="30.5" width="112" height="142" rx="7" fill="#1a1209"/><rect x="641" y="28" width="112" height="142" rx="7" fill="#efe6ff" stroke="#1a1209" stroke-width="2"/>
+  <text class="mono" x="697.0" y="47" text-anchor="middle" font-size="13" font-weight="700" fill="#1a1209">sort -rn</text>
+  <text x="697.0" y="61" text-anchor="middle" font-size="9" font-weight="600" fill="#5c4a30">then head -3</text>
+  <path d="M649 69H745" stroke="#d8d2c8" stroke-width="1.5"/>
+  <text class="mono" x="650" y="85" font-size="8.5" font-weight="500" fill="#1a1209">4 203.0.113.9</text>
+  <text class="mono" x="650" y="97" font-size="8.5" font-weight="500" fill="#1a1209">2 198.51.100.23</text>
+  <text class="mono" x="650" y="109" font-size="8.5" font-weight="500" fill="#1a1209">1 10.0.4.17</text>
+  <text x="380" y="190" text-anchor="middle" font-size="9.5" font-weight="700" fill="#9a3412">uniq -c only merges lines that are next to each other; without the first sort, 203.0.113.9 is counted twice as 2</text>
+</svg>
