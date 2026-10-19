@@ -129,6 +129,15 @@
         "domain-4/4.2-service-levels.md",
         "domain-4/4.3-provider-connections.md"
       ]
+    },
+    "preview-obj-3.2-3.3": {
+      "file": "preview-obj-3.2-3.3",
+      "topics": [
+        "domain-3/3.2-pipeline-orchestration.md",
+        "domain-3/3.2-pipeline-enhancements.md",
+        "domain-3/3.3-triggers-and-chatops.md",
+        "domain-3/3.3-pipeline-definitions.md"
+      ]
     }
   }
 }

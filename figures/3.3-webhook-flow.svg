@@ -1,0 +1,44 @@
+<svg viewBox="0 0 760 214" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A git push leads the Git platform to send a signed webhook POST to a CI receiver, which recomputes the HMAC and either queues the pipeline or rejects the request">
+<defs>
+<marker id="wh-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1a1209"/></marker>
+<marker id="wh-p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6d28d9"/></marker>
+<marker id="wh-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#9a3412"/></marker>
+</defs>
+<g stroke="#1a1209" stroke-width="2">
+<rect x="10.5" y="26.5" width="112" height="60" rx="7" fill="#1a1209"/><rect x="8" y="24" width="112" height="60" rx="7" fill="#fff"/>
+<rect x="176.5" y="26.5" width="124" height="60" rx="7" fill="#1a1209"/><rect x="174" y="24" width="124" height="60" rx="7" fill="#fff"/>
+<rect x="474.5" y="26.5" width="136" height="60" rx="7" fill="#1a1209"/><rect x="472" y="24" width="136" height="60" rx="7" fill="#ffd60a"/>
+<rect x="650.5" y="26.5" width="102" height="60" rx="7" fill="#1a1209"/><rect x="648" y="24" width="102" height="60" rx="7" fill="#6d28d9"/>
+</g>
+<g text-anchor="middle">
+<text x="64" y="50" font-size="12" font-weight="800" fill="#1a1209">Engineer</text>
+<text x="64" y="66" class="mono" font-size="9.5" font-weight="600" fill="#5c4a30">git push</text>
+<text x="236" y="50" font-size="12" font-weight="800" fill="#1a1209">Git platform</text>
+<text x="236" y="66" font-size="9" font-weight="600" fill="#5c4a30">holds the secret</text>
+<text x="540" y="46" font-size="12" font-weight="800" fill="#1a1209">CI receiver</text>
+<text x="540" y="61" font-size="9" font-weight="700" fill="#1a1209">recompute HMAC</text>
+<text x="540" y="74" class="mono" font-size="9" font-weight="700" fill="#1a1209">compare_digest</text>
+<text x="699" y="50" font-size="12" font-weight="800" fill="#fff">Pipeline</text>
+<text x="699" y="66" font-size="9" font-weight="600" fill="#efe6ff">jobs on runners</text>
+</g>
+<g fill="none" stroke-width="2">
+<path d="M120 54H171" stroke="#1a1209" marker-end="url(#wh-a)"/>
+<path d="M298 54H469" stroke="#1a1209" marker-end="url(#wh-a)"/>
+<path d="M608 54H645" stroke="#6d28d9" marker-end="url(#wh-p)"/>
+<path d="M540 87V138" stroke="#9a3412" stroke-dasharray="4 3" marker-end="url(#wh-r)"/>
+<path d="M384 56V100" stroke="#5c4a30" stroke-width="1.5"/>
+</g>
+<text x="384" y="46" text-anchor="middle" font-size="10" font-weight="800" fill="#1a1209">HTTPS POST (webhook)</text>
+<text x="626" y="46" text-anchor="middle" font-size="10" font-weight="800" fill="#6d28d9">202</text>
+<rect x="208" y="100" width="280" height="76" rx="7" fill="#efe6ff" stroke="#6d28d9" stroke-width="1.5"/>
+<g font-size="9.5" font-weight="600" fill="#1a1209">
+<text class="mono" x="220" y="118">POST /hook</text>
+<text class="mono" x="220" y="133">X-GitHub-Event: push</text>
+<text class="mono" x="220" y="148">X-Hub-Signature-256: <tspan fill="#6d28d9">sha256=7571...3e17</tspan></text>
+<text class="mono" x="220" y="163">{"ref": "refs/heads/main", ...}</text>
+</g>
+<text x="548" y="116" font-size="10" font-weight="800" fill="#9a3412">mismatch</text>
+<text x="540" y="156" text-anchor="middle" font-size="10" font-weight="800" fill="#9a3412">401</text>
+<text x="540" y="170" text-anchor="middle" font-size="9.5" font-weight="600" fill="#5c4a30">request dropped</text>
+<text x="384" y="198" text-anchor="middle" font-size="9.5" font-weight="600" fill="#5c4a30">signature = HMAC-SHA256(secret, raw body); the secret itself is never sent</text>
+</svg>
