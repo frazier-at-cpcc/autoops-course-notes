@@ -26,17 +26,41 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.13'   # 1.4 shows Python 3.13 traceback wording
 
-      - name: Install dependencies
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+          cache: false
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.9.8
+          terraform_wrapper: false
+
+      - name: Install test tools
         run: |
           npm ci
           npx playwright install --with-deps chromium
-          pip install pre-commit
+          sudo apt-get update -qq
+          sudo apt-get install -yqq acl sqlite3 shellcheck wget
+          pip install pre-commit ansible-core pywinrm pika "PyYAML==6.0.3" ruamel.yaml yamllint bcrypt
+          npm install -g newman
+          curl -sSfL https://github.com/rhysd/actionlint/releases/download/v1.7.3/actionlint_1.7.3_linux_amd64.tar.gz | sudo tar xz -C /usr/local/bin actionlint
+          go install github.com/go-task/task/v3/cmd/task@v3.54.0
+          echo "$HOME/go/bin" >> "$GITHUB_PATH"
+          pwsh --version
 
       - name: Run every command in the notes
         run: |
-          for t in tests/*.sh; do echo "::group::$t"; bash "$t"; echo "::endgroup::"; done
+          fail=0
+          for t in tests/*.sh; do
+            echo "::group::$t"
+            start=$(date +%s)
+            if bash "$t"; then echo "PASS $t ($(( $(date +%s) - start ))s)"; else echo "::error::$t failed"; fail=1; fi
+            echo "::endgroup::"
+          done
+          exit $fail
 
       - name: Build PDFs
         run: npm run build
