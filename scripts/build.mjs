@@ -288,6 +288,26 @@ async function render(browser, htmlText, htmlPath, pdfPath) {
   const page = await browser.newPage();
   await page.goto(pathToFileURL(htmlPath).href, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
+  // Chrome silently shrinks every page to fit if anything is wider than the page.
+  // Lay out at Letter width in print mode and fail on any overflow instead.
+  await page.setViewportSize({ width: 816, height: 1056 });
+  await page.emulateMedia({ media: 'print' });
+  const overflow = await page.evaluate(() => {
+    const out = [];
+    for (const cols of document.querySelectorAll('.cols')) {
+      const cs = getComputedStyle(cols);
+      const colWidth = (cols.clientWidth - parseFloat(cs.columnGap)) / 2;
+      for (const el of cols.querySelectorAll('*')) {
+        if (el.closest('.wide-block, figure.wide, .col-end')) continue;   // these span both columns
+        // An element split across columns has one rect per fragment; measure each.
+        const w = Math.max(0, ...[...el.getClientRects()].map((r) => r.width));
+        if (w > colWidth + 1) out.push(`${cols.closest('.topic')?.id ?? '?'}: <${el.tagName.toLowerCase()}> ${Math.round(w)}px > ${Math.round(colWidth)}px "${el.textContent.trim().slice(0, 50)}"`);
+      }
+    }
+    if (document.documentElement.scrollWidth > document.documentElement.clientWidth) out.push('page: document wider than Letter');
+    return out.slice(0, 8);
+  });
+  if (overflow.length) throw new Error(`Content wider than its column (overlaps the next column, or Chrome shrinks every page):\n  ${overflow.join('\n  ')}`);
   await page.pdf({ path: pdfPath, preferCSSPageSize: true, printBackground: true, outline: true, tagged: true });
   await page.close();
 }
