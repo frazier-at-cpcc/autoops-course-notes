@@ -120,12 +120,7 @@
         "domain-2/2.3-rest-fundamentals.md",
         "domain-2/2.3-rest-tools.md",
         "domain-2/2.4-troubleshooting-configuration.md",
-        "domain-2/2.4-config-file-syntax.md"
-      ]
-    },
-    "preview-obj-3.1": {
-      "file": "preview-obj-3.1",
-      "topics": [
+        "domain-2/2.4-config-file-syntax.md",
         "domain-3/3.1-secrets-management.md",
         "domain-3/3.1-artifact-management.md",
         "domain-3/3.1-task-runners.md"
