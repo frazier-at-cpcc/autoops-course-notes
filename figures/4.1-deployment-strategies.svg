@@ -1,0 +1,89 @@
+<svg viewBox="0 0 760 222" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="In-place, rolling, blue-green, and canary deployments compared side by side">
+<defs><marker id="ds-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1a1209"/></marker><marker id="ds-p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6d28d9"/></marker></defs>
+<text x="89.0" y="16" font-size="11" font-weight="800" fill="#6d28d9" text-anchor="middle" letter-spacing="1.6">IN-PLACE</text>
+<rect x="43.5" y="30.5" width="96" height="26" rx="7" fill="#1a1209"/><rect x="41.0" y="28" width="96" height="26" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="89.0" y="45" font-size="9.5" font-weight="700" fill="#1a1209" text-anchor="middle">load balancer</text>
+<path d="M72.5 56L23.0 101" stroke="#d8d2c8" stroke-width="2" stroke-dasharray="4 3"/>
+<path d="M83.5 56L67.0 101" stroke="#d8d2c8" stroke-width="2" stroke-dasharray="4 3"/>
+<path d="M94.5 56L111.0 101" stroke="#d8d2c8" stroke-width="2" stroke-dasharray="4 3"/>
+<path d="M105.5 56L155.0 101" stroke="#d8d2c8" stroke-width="2" stroke-dasharray="4 3"/>
+<rect x="7.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="5.0" y="104" width="36" height="30" rx="7" fill="#9a3412" stroke="#1a1209" stroke-width="2"/>
+<text x="23.0" y="123" font-size="10.5" font-weight="800" fill="#fff" text-anchor="middle">v2</text>
+<rect x="51.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="49.0" y="104" width="36" height="30" rx="7" fill="#9a3412" stroke="#1a1209" stroke-width="2"/>
+<text x="67.0" y="123" font-size="10.5" font-weight="800" fill="#fff" text-anchor="middle">v2</text>
+<rect x="95.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="93.0" y="104" width="36" height="30" rx="7" fill="#9a3412" stroke="#1a1209" stroke-width="2"/>
+<text x="111.0" y="123" font-size="10.5" font-weight="800" fill="#fff" text-anchor="middle">v2</text>
+<rect x="139.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="137.0" y="104" width="36" height="30" rx="7" fill="#9a3412" stroke="#1a1209" stroke-width="2"/>
+<text x="155.0" y="123" font-size="10.5" font-weight="800" fill="#fff" text-anchor="middle">v2</text>
+<text x="89.0" y="152" font-size="9.5" font-weight="800" fill="#9a3412" text-anchor="middle">outage during the upgrade</text>
+<text x="89.0" y="172" font-size="9.5" font-weight="600" fill="#5c4a30" text-anchor="middle">Every server upgrades where it runs;</text>
+<text x="89.0" y="184" font-size="9.5" font-weight="600" fill="#5c4a30" text-anchor="middle">users wait for the restart</text>
+<path d="M186.0 8V192" stroke="#d8d2c8" stroke-width="1.5" stroke-dasharray="3 4"/>
+<text x="283.0" y="16" font-size="11" font-weight="800" fill="#6d28d9" text-anchor="middle" letter-spacing="1.6">ROLLING</text>
+<rect x="237.5" y="30.5" width="96" height="26" rx="7" fill="#1a1209"/><rect x="235.0" y="28" width="96" height="26" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="283.0" y="45" font-size="9.5" font-weight="700" fill="#1a1209" text-anchor="middle">load balancer</text>
+<path d="M266.5 56L217.0 101" stroke="#1a1209" stroke-width="2" marker-end="url(#ds-a)"/>
+<path d="M277.5 56L261.0 101" stroke="#1a1209" stroke-width="2" marker-end="url(#ds-a)"/>
+<path d="M288.5 56L305.0 101" stroke="#d8d2c8" stroke-width="2" stroke-dasharray="4 3"/>
+<path d="M299.5 56L349.0 101" stroke="#1a1209" stroke-width="2" marker-end="url(#ds-a)"/>
+<rect x="201.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="199.0" y="104" width="36" height="30" rx="7" fill="#6d28d9" stroke="#1a1209" stroke-width="2"/>
+<text x="217.0" y="123" font-size="10.5" font-weight="800" fill="#fff" text-anchor="middle">v2</text>
+<rect x="245.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="243.0" y="104" width="36" height="30" rx="7" fill="#6d28d9" stroke="#1a1209" stroke-width="2"/>
+<text x="261.0" y="123" font-size="10.5" font-weight="800" fill="#fff" text-anchor="middle">v2</text>
+<rect x="289.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="287.0" y="104" width="36" height="30" rx="7" fill="#9a3412" stroke="#1a1209" stroke-width="2"/>
+<text x="305.0" y="123" font-size="10.5" font-weight="800" fill="#fff" text-anchor="middle">v2</text>
+<rect x="333.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="331.0" y="104" width="36" height="30" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="349.0" y="123" font-size="10.5" font-weight="800" fill="#1a1209" text-anchor="middle">v1</text>
+<text x="283.0" y="152" font-size="9.5" font-weight="700" fill="#5c4a30" text-anchor="middle">3 of 4 serving; v1 and v2 mixed</text>
+<text x="283.0" y="172" font-size="9.5" font-weight="600" fill="#5c4a30" text-anchor="middle">One batch is drained, upgraded,</text>
+<text x="283.0" y="184" font-size="9.5" font-weight="600" fill="#5c4a30" text-anchor="middle">and returned at a time</text>
+<path d="M380.0 8V192" stroke="#d8d2c8" stroke-width="1.5" stroke-dasharray="3 4"/>
+<text x="477.0" y="16" font-size="11" font-weight="800" fill="#6d28d9" text-anchor="middle" letter-spacing="1.6">BLUE-GREEN</text>
+<rect x="431.5" y="30.5" width="96" height="26" rx="7" fill="#1a1209"/><rect x="429.0" y="28" width="96" height="26" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="477.0" y="45" font-size="9.5" font-weight="700" fill="#1a1209" text-anchor="middle">load balancer</text>
+<path d="M461.2 56L414.0 101" stroke="#d8d2c8" stroke-width="2" stroke-dasharray="4 3"/>
+<path d="M471.8 56L456.0 101" stroke="#d8d2c8" stroke-width="2" stroke-dasharray="4 3"/>
+<path d="M482.2 56L498.0 101" stroke="#6d28d9" stroke-width="2" marker-end="url(#ds-p)"/>
+<path d="M492.8 56L540.0 101" stroke="#6d28d9" stroke-width="2" marker-end="url(#ds-p)"/>
+<rect x="398.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="396.0" y="104" width="36" height="30" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="414.0" y="123" font-size="10.5" font-weight="800" fill="#1a1209" text-anchor="middle">v1</text>
+<rect x="440.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="438.0" y="104" width="36" height="30" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="456.0" y="123" font-size="10.5" font-weight="800" fill="#1a1209" text-anchor="middle">v1</text>
+<rect x="482.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="480.0" y="104" width="36" height="30" rx="7" fill="#6d28d9" stroke="#1a1209" stroke-width="2"/>
+<text x="498.0" y="123" font-size="10.5" font-weight="800" fill="#fff" text-anchor="middle">v2</text>
+<rect x="524.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="522.0" y="104" width="36" height="30" rx="7" fill="#6d28d9" stroke="#1a1209" stroke-width="2"/>
+<text x="540.0" y="123" font-size="10.5" font-weight="800" fill="#fff" text-anchor="middle">v2</text>
+<text x="435.0" y="152" font-size="9.5" font-weight="800" fill="#5c4a30" text-anchor="middle">blue (standby)</text>
+<text x="519.0" y="152" font-size="9.5" font-weight="800" fill="#6d28d9" text-anchor="middle">green (live)</text>
+<text x="477.0" y="172" font-size="9.5" font-weight="600" fill="#5c4a30" text-anchor="middle">The router flips to green;</text>
+<text x="477.0" y="184" font-size="9.5" font-weight="600" fill="#5c4a30" text-anchor="middle">flipping back is the rollback</text>
+<path d="M574.0 8V192" stroke="#d8d2c8" stroke-width="1.5" stroke-dasharray="3 4"/>
+<text x="671.0" y="16" font-size="11" font-weight="800" fill="#6d28d9" text-anchor="middle" letter-spacing="1.6">CANARY</text>
+<rect x="625.5" y="30.5" width="96" height="26" rx="7" fill="#1a1209"/><rect x="623.0" y="28" width="96" height="26" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="671.0" y="45" font-size="9.5" font-weight="700" fill="#1a1209" text-anchor="middle">load balancer</text>
+<path d="M654.5 56L605.0 101" stroke="#1a1209" stroke-width="2" marker-end="url(#ds-a)"/>
+<path d="M665.5 56L649.0 101" stroke="#1a1209" stroke-width="2" marker-end="url(#ds-a)"/>
+<path d="M676.5 56L693.0 101" stroke="#1a1209" stroke-width="2" marker-end="url(#ds-a)"/>
+<path d="M687.5 56L737.0 101" stroke="#6d28d9" stroke-width="2" marker-end="url(#ds-p)"/>
+<rect x="589.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="587.0" y="104" width="36" height="30" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="605.0" y="123" font-size="10.5" font-weight="800" fill="#1a1209" text-anchor="middle">v1</text>
+<rect x="633.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="631.0" y="104" width="36" height="30" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="649.0" y="123" font-size="10.5" font-weight="800" fill="#1a1209" text-anchor="middle">v1</text>
+<rect x="677.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="675.0" y="104" width="36" height="30" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="693.0" y="123" font-size="10.5" font-weight="800" fill="#1a1209" text-anchor="middle">v1</text>
+<rect x="721.5" y="106.5" width="36" height="30" rx="7" fill="#1a1209"/><rect x="719.0" y="104" width="36" height="30" rx="7" fill="#6d28d9" stroke="#1a1209" stroke-width="2"/>
+<text x="737.0" y="123" font-size="10.5" font-weight="800" fill="#fff" text-anchor="middle">v2</text>
+<text x="613.0" y="80" font-size="10" font-weight="800" fill="#1a1209" text-anchor="middle">90%</text>
+<text x="749.0" y="82" font-size="10" font-weight="800" fill="#6d28d9" text-anchor="middle">10%</text>
+<text x="671.0" y="152" font-size="9.5" font-weight="700" fill="#5c4a30" text-anchor="middle">v2 widens in steps if healthy</text>
+<text x="671.0" y="172" font-size="9.5" font-weight="600" fill="#5c4a30" text-anchor="middle">A small share of traffic tries v2</text>
+<text x="671.0" y="184" font-size="9.5" font-weight="600" fill="#5c4a30" text-anchor="middle">before everyone moves</text>
+<rect x="200" y="201" width="14" height="11" rx="3" fill="#fff" stroke="#1a1209" stroke-width="1.5"/>
+<text x="220" y="210" font-size="9.5" font-weight="700" fill="#1a1209" text-anchor="start">old version (v1)</text>
+<rect x="330" y="201" width="14" height="11" rx="3" fill="#6d28d9" stroke="#1a1209" stroke-width="1.5"/>
+<text x="350" y="210" font-size="9.5" font-weight="700" fill="#1a1209" text-anchor="start">new version (v2)</text>
+<rect x="460" y="201" width="14" height="11" rx="3" fill="#9a3412" stroke="#1a1209" stroke-width="1.5"/>
+<text x="480" y="210" font-size="9.5" font-weight="700" fill="#1a1209" text-anchor="start">being replaced</text>
+<path d="M590 206H612" stroke="#d8d2c8" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="618" y="210" font-size="9.5" font-weight="700" fill="#1a1209" text-anchor="start">no traffic</text>
+</svg>

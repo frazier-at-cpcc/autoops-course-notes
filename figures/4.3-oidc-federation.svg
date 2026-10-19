@@ -1,0 +1,45 @@
+<svg viewBox="0 0 760 214" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sequence: a GitHub Actions job gets an OIDC token, exchanges it at AWS STS for temporary credentials, and calls AWS">
+<defs><marker id="of-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1a1209"/></marker><marker id="of-p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#6d28d9"/></marker></defs>
+<path d="M95 51V206" stroke="#d8d2c8" stroke-width="2" stroke-dasharray="4 4"/>
+<path d="M285 51V206" stroke="#d8d2c8" stroke-width="2" stroke-dasharray="4 4"/>
+<path d="M475 51V206" stroke="#d8d2c8" stroke-width="2" stroke-dasharray="4 4"/>
+<path d="M665 51V206" stroke="#d8d2c8" stroke-width="2" stroke-dasharray="4 4"/>
+<rect x="22.5" y="10.5" width="150" height="40" rx="7" fill="#1a1209"/>
+<rect x="20.0" y="8" width="150" height="40" rx="7" fill="#6d28d9" stroke="#1a1209" stroke-width="2"/>
+<text x="95" y="25" font-size="11.5" font-weight="800" fill="#fff" text-anchor="middle">CI job</text>
+<text x="95" y="39" font-size="9" font-weight="600" fill="#efe6ff" text-anchor="middle">GitHub Actions runner</text>
+<rect x="212.5" y="10.5" width="150" height="40" rx="7" fill="#1a1209"/>
+<rect x="210.0" y="8" width="150" height="40" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="285" y="25" font-size="11.5" font-weight="800" fill="#1a1209" text-anchor="middle">OIDC provider</text>
+<text x="285" y="39" font-size="9" font-weight="600" fill="#5c4a30" text-anchor="middle">token.actions.github...</text>
+<rect x="402.5" y="10.5" width="150" height="40" rx="7" fill="#1a1209"/>
+<rect x="400.0" y="8" width="150" height="40" rx="7" fill="#ffd60a" stroke="#1a1209" stroke-width="2"/>
+<text x="475" y="25" font-size="11.5" font-weight="800" fill="#1a1209" text-anchor="middle">AWS STS</text>
+<text x="475" y="39" font-size="9" font-weight="600" fill="#1a1209" text-anchor="middle">checks the trust policy</text>
+<rect x="592.5" y="10.5" width="150" height="40" rx="7" fill="#1a1209"/>
+<rect x="590.0" y="8" width="150" height="40" rx="7" fill="#fff" stroke="#1a1209" stroke-width="2"/>
+<text x="665" y="25" font-size="11.5" font-weight="800" fill="#1a1209" text-anchor="middle">AWS APIs</text>
+<text x="665" y="39" font-size="9" font-weight="600" fill="#5c4a30" text-anchor="middle">S3, EC2, Route 53 ...</text>
+<path d="M95 76H281" stroke="#1a1209" stroke-width="2" marker-end="url(#of-a)"/>
+<circle cx="109" cy="65" r="8" fill="#1a1209"/>
+<text x="109" y="68.5" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle">1</text>
+<text x="198.0" y="69" font-size="9.5" font-weight="700" fill="#1a1209" text-anchor="middle">request an ID token</text>
+<text x="198.0" y="89" font-size="9" font-weight="600" fill="#5c4a30" text-anchor="middle" class="mono">id-token: write</text>
+<path d="M285 110H99" stroke="#1a1209" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#of-a)"/>
+<circle cx="109" cy="99" r="8" fill="#1a1209"/>
+<text x="109" y="102.5" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle">2</text>
+<text x="198.0" y="103" font-size="9.5" font-weight="700" fill="#1a1209" text-anchor="middle">signed JWT</text>
+<text x="198.0" y="123" font-size="9" font-weight="600" fill="#5c4a30" text-anchor="middle" class="mono">aud + sub claims</text>
+<path d="M95 148H471" stroke="#1a1209" stroke-width="2" marker-end="url(#of-a)"/>
+<circle cx="109" cy="137" r="8" fill="#1a1209"/>
+<text x="109" y="140.5" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle">3</text>
+<text x="293.0" y="141" font-size="9.5" font-weight="700" fill="#1a1209" text-anchor="middle">AssumeRoleWithWebIdentity (role ARN + JWT)</text>
+<path d="M475 176H99" stroke="#1a1209" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#of-a)"/>
+<circle cx="109" cy="165" r="8" fill="#1a1209"/>
+<text x="109" y="168.5" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle">4</text>
+<text x="293.0" y="169" font-size="9.5" font-weight="700" fill="#1a1209" text-anchor="middle">temporary keys, expire in 1 hour by default</text>
+<path d="M95 204H661" stroke="#6d28d9" stroke-width="2" marker-end="url(#of-p)"/>
+<circle cx="109" cy="193" r="8" fill="#1a1209"/>
+<text x="109" y="196.5" font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle">5</text>
+<text x="388.0" y="197" font-size="9.5" font-weight="700" fill="#6d28d9" text-anchor="middle">API calls signed with the temporary keys</text>
+</svg>
