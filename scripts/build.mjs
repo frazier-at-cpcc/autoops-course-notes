@@ -12,6 +12,7 @@ import { Marked } from 'marked';
 import hljs from 'highlight.js';
 import { chromium } from '@playwright/test';
 import * as pdfjs from 'pdfjs-dist/legacy/build/pdf.mjs';
+import { PDFDocument } from 'pdf-lib';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const book = JSON.parse(await readFile(path.join(ROOT, 'book.json'), 'utf8'));
@@ -55,7 +56,7 @@ function makeMarked() {
         } else {
           body = esc(text);
         }
-        return `<pre${labelAttr}><code>${body}</code></pre>\n`;
+        return `<div class="box"><pre${labelAttr}><code>${body}</code></pre></div>\n`;
       },
       table(token) {
         const head = token.header.map((c) => `<th>${this.parser.parseInline(c.tokens)}</th>`).join('');
@@ -96,7 +97,7 @@ async function expandContainers(src) {
     const inner = md.parse(body.join('\n'));
     if (kind === 'exam' || kind === 'try') {
       const label = kind === 'exam' ? 'On the exam' : (arg || 'Try it');
-      out.push(`<aside class="callout ${kind}"><span class="label">${esc(label)}</span>${inner}</aside>`, '');
+      out.push(`<div class="box"><aside class="callout ${kind}"><span class="label">${esc(label)}</span>${inner}</aside></div>`, '');
     } else if (kind === 'wide') {
       out.push(`<div class="wide-block">${inner}</div>`, '');
     } else {
@@ -233,6 +234,48 @@ ${body.join('\n')}
 </body></html>`;
 }
 
+// ---------- Continuation bars ----------
+// Chromium cannot repeat an element at the top of each page a section spans, so
+// after layout we work out which pages continue a topic from the page before,
+// render a bar for each, and stamp it into the reserved top margin.
+function continuationPages(topics, starts, atTop, lastBodyPage) {
+  const out = [];
+  topics.forEach((t, i) => {
+    const last = i + 1 < topics.length ? starts[i + 1] : lastBodyPage;
+    for (let p = starts[i] + 1; p <= last; p++) {
+      // Skip the next topic's first page only when that topic opens the page.
+      if (i + 1 < topics.length && p === starts[i + 1] && atTop[i + 1]) continue;
+      out.push({ page: p, topic: t });
+    }
+  });
+  return out;
+}
+
+async function stampContinuations(browser, pdfPath, htmlPath, topics, starts, atTop) {
+  const main = await PDFDocument.load(await readFile(pdfPath));
+  const conts = continuationPages(topics, starts, atTop, main.getPageCount() - 1);
+  if (!conts.length) return 0;
+  const bars = conts.map((c) => `<section class="cont-page"><div class="topic-bar"><h2><span class="obj">${c.topic.objective}</span> ${esc(c.topic.title)}<span class="more">(continued)</span></h2><span class="dom">${c.topic.domain.num} ${esc(c.topic.domain.title)}</span></div></section>`).join('');
+  const overlayHtml = htmlPath.replace(/\.html$/, '.continued.html');
+  const overlayPdf = pdfPath.replace(/\.pdf$/, '.continued.pdf');
+  const noFooter = '@bottom-left{content:none;background:none}@bottom-center{content:none;background:none}@bottom-right{content:none;background:none}';
+  await writeFile(overlayHtml, `<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../styles/notes.css"><style>@page{margin:0;${noFooter}} body{background:transparent}</style></head><body>${bars}</body></html>`);
+  const page = await browser.newPage();
+  await page.goto(pathToFileURL(overlayHtml).href, { waitUntil: 'networkidle' });
+  await page.evaluate(() => document.fonts.ready);
+  await page.pdf({ path: overlayPdf, preferCSSPageSize: true, printBackground: true, omitBackground: true });
+  await page.close();
+  const overlay = await PDFDocument.load(await readFile(overlayPdf));
+  const embedded = await main.embedPages(overlay.getPages());
+  conts.forEach((c, i) => {
+    const target = main.getPage(c.page);
+    const { width, height } = target.getSize();
+    target.drawPage(embedded[i], { x: 0, y: 0, width, height });
+  });
+  await writeFile(pdfPath, await main.save());
+  return conts.length;
+}
+
 // ---------- Render ----------
 
 async function render(browser, htmlText, htmlPath, pdfPath) {
@@ -245,17 +288,21 @@ async function render(browser, htmlText, htmlPath, pdfPath) {
 }
 
 // Map outline titles to 1-based body page numbers (front matter is uncounted).
+const norm = (t) => t.replace(/\s+/g, '');  // outline titles lose spaces at line wraps
+
 async function readPages(pdfPath, topics) {
   const doc = await pdfjs.getDocument({ data: new Uint8Array(await readFile(pdfPath)), verbosity: 0 }).promise;
   const flat = [];
   const walk = (items) => items.forEach((it) => { flat.push(it); if (it.items) walk(it.items); });
   walk((await doc.getOutline()) || []);
+  const tops = {};
   const indexOf = async (it) => {
     const dest = typeof it.dest === 'string' ? await doc.getDestination(it.dest) : it.dest;
-    return dest ? doc.getPageIndex(dest[0]) : null;
+    if (!dest) return null;
+    tops[norm(it.title)] = dest[3]; // XYZ destination: [page, /XYZ, left, top, zoom]
+    return doc.getPageIndex(dest[0]);
   };
   const idx = {};
-  const norm = (t) => t.replace(/\s+/g, '');  // titles lose spaces at line wraps
   for (const it of flat) { const k = norm(it.title); if (idx[k] === undefined) idx[k] = await indexOf(it); }
   const firstDomain = book.domains.find((d) => idx[norm(d.title)] !== undefined);
   if (!firstDomain) throw new Error('No domain divider found in PDF outline');
@@ -267,7 +314,11 @@ async function readPages(pdfPath, topics) {
     if (idx[key] === undefined) throw new Error(`Topic not found in PDF outline: ${key}`);
     pages[t.id] = idx[key] - front + 1;
   }
-  return { pages, total: doc.numPages };
+  const starts = topics.map((t) => idx[norm(`${t.objective} ${t.title}`)]);
+  // A heading within ~1.25in of the page top means the topic opens the page.
+  const pageHeight = (await doc.getPage(1)).view[3];
+  const atTop = topics.map((t) => pageHeight - tops[norm(`${t.objective} ${t.title}`)] < 90);
+  return { pages, total: doc.numPages, starts, atTop };
 }
 
 const wanted = process.argv[2] ? [process.argv[2]] : Object.keys(book.volumes);
@@ -287,7 +338,8 @@ try {
     await render(browser, await html(topics, pages), htmlPath, pdfPath);
     const check = await readPages(pdfPath, topics);
     for (const k of Object.keys(pages)) if (pages[k] !== check.pages[k]) throw new Error(`Page drift on ${k}; rerun`);
-    console.log(`${name}: ${path.relative(ROOT, pdfPath)} (${check.total} pages)`);
+    const stamped = await stampContinuations(browser, pdfPath, htmlPath, topics, check.starts, check.atTop);
+    console.log(`${name}: ${path.relative(ROOT, pdfPath)} (${check.total} pages, ${stamped} continuation bars)`);
   }
 } finally {
   await browser.close();

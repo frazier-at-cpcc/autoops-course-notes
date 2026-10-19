@@ -35,7 +35,9 @@
 
 @page {
   size: letter;
-  margin: 0.5in 0.5in 0.72in;
+  /* Top margin reserves a band for the "(continued)" bar stamped onto pages
+     where a topic carries over (see scripts/build.mjs). */
+  margin: 0.86in 0.5in 0.72in;
 
   @bottom-left {
     content: "© 2026 Frazier A. Smith · CC BY-NC-SA 4.0";
@@ -71,6 +73,7 @@
 
 /* Front matter: no footer, not counted, so page 1 is the first page of notes. */
 @page front {
+  margin: 0.5in 0.5in 0.72in;
   counter-increment: page 0;
   @bottom-left { content: none; background: none; }
   @bottom-center { content: none; background: none; }
@@ -271,6 +274,15 @@ strong { font-weight: 700; }
    columns that precede a spanner, so a topic's last page splits its remaining
    content evenly instead of stacking it all in the left column. */
 .col-end { column-span: all; height: 0; margin: 0; }
+/* Each box (code, callout) sits in its own block. Two inline-block boxes in one
+   block form a two-line paragraph that orphans/widows: 3 refuses to split, so
+   they would stack in one column. */
+.cols .box { margin: 0; }
+
+/* Continuation bar, rendered on its own page and stamped into the top margin. */
+.cont-page { width: 8.5in; height: 11in; position: relative; break-after: page; }
+.cont-page .topic-bar { position: absolute; top: 0.38in; left: 0.5in; right: calc(0.5in + 4px); margin: 0; }
+.cont-page .topic-bar h2 .more { font-weight: 500; opacity: .8; font-size: 11pt; margin-left: 2pt; }
 
 .cols h3 {
   font-size: 10.6pt; font-weight: 800; letter-spacing: -0.012em;
